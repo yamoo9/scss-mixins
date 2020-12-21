@@ -1,0 +1,17 @@
+@mixin order($value) {
+  @if not $value {
+    @error 'order() 믹스인은 none, first, last 또는 숫자 값을 전달 받아야 합니다.';
+  }
+  @if $value == 'none' {
+    order: 0;
+  }
+  @if $value == 'first' {
+    order: -9999;
+  }
+  @if $value == 'last' {
+    order: 9999;
+  }
+  @if not isValidKeywords($value, none first last) {
+    order: $value;
+  }
+}

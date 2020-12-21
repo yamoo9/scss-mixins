@@ -1,0 +1,56 @@
+// Flex Item 요소에 설정 가능한 속성
+// 참고: https://developer.mozilla.org/ko/docs/Glossary/Flex_Item
+// - flex-grow
+// - flex-shrink
+// - flex-basis
+// - align-self
+// - order
+
+// 참고:
+// https://tailwindcss.com/docs/flex
+// https://tailwindcss.com/docs/flex-grow
+// https://tailwindcss.com/docs/flex-shrink
+// https://tailwindcss.com/docs/order
+
+// @include flex-item(grow 1 shrink 0 basis 100%);
+// @include flex-item(self-start);
+@mixin flex-item($args) {
+  @if $args != null {
+    // align-self
+    @each $keyword in self-auto self-start self-end self-center self-stretch {
+      $self-value-index: index($args, $keyword);
+      @if $self-value-index {
+        $self-value: nth($args, $self-value-index);
+        @if $self-value == 'self-auto' {
+          align-self: auto;
+        }
+        @if $self-value == 'self-start' {
+          align-self: flex-start;
+        }
+        @if $self-value == 'self-end' {
+          align-self: flex-end;
+        }
+        @if $self-value == 'self-center' {
+          align-self: center;
+        }
+        @if $self-value == 'self-stretch' {
+          align-self: stretch;
+        }
+      }
+    }
+
+    // flex-grow, flex-shrink, flex-basis
+    @each $keyword in grow shrink basis {
+      $flex-value-index: index($args, $keyword);
+      @if $flex-value-index {
+        flex-#{$keyword}: nth($args, $flex-value-index + 1);
+      }
+    }
+
+    // order
+    $order-index: index($args, order);
+    @if $order-index {
+      order: nth($args, $order-index + 1);
+    }
+  }
+}

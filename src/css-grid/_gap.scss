@@ -1,0 +1,12 @@
+// @include gap(20px 40px);
+// 참고: https://tailwindcss.com/docs/gap
+
+@mixin gap($grid-gap: null null) {
+  @if length($grid-gap) == 1 {
+    gap: $grid-gap;
+  }
+  @if length($grid-gap) == 2 {
+    row-gap: nth($grid-gap, 1);
+    column-gap: nth($grid-gap, 2);
+  }
+}

@@ -1,0 +1,148 @@
+// Flex Container 요소에 설정 가능한 속성
+// 참고: https://developer.mozilla.org/ko/docs/Glossary/Flex_Container
+// - flex-direction
+// - flex-wrap
+// - justify-content
+// - align-items
+// - align-content
+
+// 참고:
+// https://tailwindcss.com/docs/flex-direction
+// https://tailwindcss.com/docs/flex-wrap
+// https://tailwindcss.com/docs/justify-content
+// https://tailwindcss.com/docs/align-items
+// https://tailwindcss.com/docs/align-content
+
+// @include flex-container(row wrap justify-center items-center);
+// @include inline-flex-container();
+@mixin flexbox-container-variant($args) {
+  @if $args != null {
+    // flex-direction ------------------------------------------
+    @each $direction in row row-reverse column column-reverse {
+      $direction-index: index($args, $direction);
+
+      @if $direction-index {
+        flex-direction: nth($args, $direction-index);
+      }
+    }
+
+    // flex-wrap -----------------------------------------------
+    @each $wrap in nowrap wrap wrap-reverse {
+      $wrap-index: index($args, $wrap);
+
+      @if $wrap-index {
+        flex-wrap: nth($args, $wrap-index);
+      }
+    }
+
+    // justify-content ------------------------------------------
+    @each $justifyContent
+      in justify-start
+      justify-end
+      justify-center
+      justify-between
+      justify-around
+      justify-evenly
+    {
+      $justifyContent-index: index($args, $justifyContent);
+
+      @if $justifyContent-index {
+        $justifyContent-value: nth($args, $justifyContent-index);
+        @if $justifyContent-value == 'justify-start' {
+          justify-content: flex-start;
+        }
+        @if $justifyContent-value == 'justify-end' {
+          justify-content: flex-end;
+        }
+        @if $justifyContent-value == 'justify-center' {
+          justify-content: center;
+        }
+        @if $justifyContent-value == 'justify-between' {
+          justify-content: space-between;
+        }
+        @if $justifyContent-value == 'justify-around' {
+          justify-content: space-around;
+        }
+        @if $justifyContent-value == 'justify-evenly' {
+          justify-content: space-evenly;
+        }
+      }
+    }
+
+    // align-items ------------------------------------------------
+    @each $alignItems
+      in items-start
+      items-end
+      items-center
+      items-baseline
+      items-stretch
+    {
+      $alignItems-index: index($args, $alignItems);
+
+      @if $alignItems-index {
+        $alignItems-value: nth($args, $alignItems-index);
+        @if $alignItems-value == 'items-start' {
+          align-items: flex-start;
+        }
+        @if $alignItems-value == 'items-end' {
+          align-items: flex-end;
+        }
+        @if $alignItems-value == 'items-center' {
+          align-items: center;
+        }
+        @if $alignItems-value == 'items-baseline' {
+          align-items: baseline;
+        }
+        @if $alignItems-value == 'items-stretch' {
+          align-items: stretch;
+        }
+      }
+    }
+
+    // align-content ------------------------------------------------
+    @each $alignContent
+      in content-start
+      content-end
+      content-center
+      content-between
+      content-around
+      content-evenly
+    {
+      $alignContent-index: index($args, $alignContent);
+
+      @if $alignContent-index {
+        $alignContent-value: nth($args, $alignContent-index);
+        @if $alignContent-value == 'content-start' {
+          align-content: flex-start;
+        }
+        @if $alignContent-value == 'content-end' {
+          align-content: flex-end;
+        }
+        @if $alignContent-value == 'content-center' {
+          align-content: center;
+        }
+        @if $alignContent-value == 'content-between' {
+          align-content: space-between;
+        }
+        @if $alignContent-value == 'content-around' {
+          align-content: space-around;
+        }
+        @if $alignContent-value == 'content-evenly' {
+          align-content: space-evenly;
+        }
+      }
+    }
+  }
+}
+
+@mixin flex-container($args) {
+  display: flex;
+  @include flexbox-container-variant($args);
+  @content;
+}
+
+@mixin inline-flex-container($args) {
+  display: inline-flex;
+  @include flexbox-container-variant($args);
+  @content;
+}

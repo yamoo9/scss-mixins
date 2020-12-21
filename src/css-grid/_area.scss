@@ -1,0 +1,21 @@
+// @include grid-areas('header header' 'sidebar content' 'footer footer');
+
+@mixin grid-areas($areas: null) {
+  grid-template-areas: $areas;
+}
+
+// @include area(2 4, 3 7);
+// @include area(footer);
+
+@mixin area($rows: null, $cols: null) {
+  @if type-of($rows) == 'list' {
+    @include row(se, $rows);
+  }
+  @if type-of($cols) == 'list' {
+    @include col(se, $cols);
+  }
+  // 그리드 영역을 문자 값으로 전달한 경우
+  @if type-of($rows) == 'string' {
+    grid-area: $rows;
+  }
+}

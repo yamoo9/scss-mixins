@@ -1,0 +1,98 @@
+//* -------------------------------------------------------------------------- */
+// 기본 변수
+
+$base-em-size: 16px !default;
+$base-rem-size: 16px !default;
+
+$colors: (
+  black: #010101,
+  white: #fefefe,
+  gray: #787878,
+) !default;
+
+//* -------------------------------------------------------------------------- */
+// 단위 제거 유틸리티
+
+@function remove-unit($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+//* -------------------------------------------------------------------------- */
+// 단위 변경 유틸리티
+
+// px → em
+@function px2em($px, $base: $base-em-size) {
+  @return (remove-unit($px / $base)) * 1em;
+}
+
+// em → px
+@function em2px($em, $base: $base-em-size) {
+  @return (remove-unit($em * $base)) * 1px;
+}
+
+// 별칭 em()
+@function em($px, $base: $base-em-size) {
+  @return px2em($px, $base);
+}
+
+// px → rem
+@function px2rem($px, $base: $base-rem-size) {
+  @return (remove-unit($px / $base)) * 1rem;
+}
+
+// rem → px
+@function rem2px($rem, $base: $base-rem-size) {
+  @return (remove-unit($rem * $base)) * 1px;
+}
+
+// 별칭 rem()
+@function rem($px, $base: $base-rem-size) {
+  @return px2rem($px, $base);
+}
+
+//* -------------------------------------------------------------------------- */
+//  컬러 유티릴티
+
+@function getColor($name: null) {
+  @if not $name {
+    @error 'getColor() 함수의 첫번째 인자 `$name` 입력이 요구됩니다.';
+  }
+
+  @if map-has-key($colors, $name) {
+    @return map-get($colors, $name);
+  }
+
+  @error '설정 가능한 컬러 값은 #{map-keys($colors)} 중 하나여야 합니다';
+}
+
+//* -------------------------------------------------------------------------- */
+// 리스트 유틸리티
+
+@function first($list) {
+  @return nth($list, 1);
+}
+
+@function last($list) {
+  @return nth($list, length($list));
+}
+
+//* -------------------------------------------------------------------------- */
+// 타입 or 키워드 검사 유틸리티
+
+@function isValidTypes($data, $typeCollection) {
+  @each $validType in $typeCollection {
+    @if type-of($data) == $validType {
+      @return true;
+    }
+  }
+  @return false;
+}
+
+@function isValidKeywords($data, $keywordsCollection) {
+  @each $validKeyword in $keywordsCollection {
+    @if $data == $validKeyword {
+      @return true;
+    }
+  }
+  @return false;
+}

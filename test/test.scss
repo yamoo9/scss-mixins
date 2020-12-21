@@ -1,0 +1,36 @@
+// 프로젝트 구성(config) 파일
+@import '../index';
+@import '../config';
+
+//* -------------------------------------------------------------------------- */
+
+@include selection() {
+  background: getColor(black);
+  color: getColor(white);
+}
+
+@include selection(img, button) {
+  background: transparent;
+  color: transparent;
+}
+
+.test {
+  @include flex-container(column nowrap justify-evenly align-center);
+
+  @include grid(2, 3, rem(10px));
+
+  @include mx(rem(20px));
+  color: getColor(black);
+
+  .item {
+    @include area(2 3, 4 8);
+    // @include order(1);
+    // @include flex(none);
+    @include flex-item(order 2 grow 1 shrink 0 basis 0%);
+    @include a11y-hidden();
+
+    @include media('>=lg', 'landscape') {
+      @include area(3 -1, 2 5);
+    }
+  }
+}

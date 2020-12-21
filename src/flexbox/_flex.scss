@@ -1,0 +1,29 @@
+@mixin flex-grow($value: 1) {
+  flex-grow: $value;
+}
+
+@mixin flex-shrink($value: 1) {
+  flex-shrink: $value;
+}
+
+@mixin flex-basis($value: 0%) {
+  flex-basis: $value;
+}
+
+@mixin flex($value) {
+  @if $value == 1 {
+    flex: 1 1 0%;
+  }
+  @if $value == auto {
+    flex: 1 1 auto;
+  }
+  @if $value == initial {
+    flex: 0 1 auto;
+  }
+  @if $value == none {
+    flex: none;
+  }
+  @if not isValidKeywords($value, 1 auto initial none) {
+    flex: $value;
+  }
+}

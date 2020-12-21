@@ -1,0 +1,54 @@
+// @include row-span(3);
+// 참고: https://tailwindcss.com/docs/grid-row
+
+@mixin row-span($n: null) {
+  @if type-of($n) != 'number' and $n != 'full' {
+    @error 'row-span() 믹스인은 숫자 또는 full 문자 값만 전달 받을 수 있습니다.';
+  }
+  @if $n == 'full' {
+    grid-row: unquote('1 / -1');
+  } @else {
+    grid-row: unquote('span #{$n} / span #{$n}');
+  }
+}
+
+// @include row-start(4);
+// 참고: https://tailwindcss.com/docs/grid-row
+
+@mixin row-start($value: null) {
+  @if type-of($value) != 'number' and $value != 'auto' {
+    @error 'row-start() 믹스인은 숫자 또는 auto 문자 값만 전달 받을 수 있습니다.';
+  }
+  grid-row-start: $value;
+}
+
+// @include row-end(5);
+// 참고: https://tailwindcss.com/docs/grid-row
+
+@mixin row-end($value: null) {
+  @if type-of($value) != 'number' and $value != 'auto' {
+    @error 'row-end() 믹스인은 숫자 또는 auto 문자 값만 전달 받을 수 있습니다.';
+  }
+  grid-row-end: $value;
+}
+
+// @include row(span, 2);
+// @include row(start, 3);
+// @include row(end, 5);
+// @include row(start-end, 3 5);
+
+@mixin row($type, $value) {
+  @if $type == 'span' {
+    @include row-span($value);
+  }
+  @if $type == 'start' or $type == 's' {
+    @include row-start($value);
+  }
+  @if $type == 'end' or $type == 'e' {
+    @include row-end($value);
+  }
+  @if $type == 'start-end' or $type == 'se' {
+    @include row-start(nth($value, 1));
+    @include row-end(nth($value, 2));
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@euid/scss-mixins",
+  "version": "0.0.1",
+  "description": "이듬(E.UID)이 제공하는 SCSS 믹스인",
+  "author": "yamoo9 <yamoo9@naver.com>",
+  "license": "MIT",
+  "main": "_index.scss",
+  "scripts": {
+    "start": "npm run test:watch",
+    "test": "sass test:dist",
+    "test:watch": "npm run test -- --watch"
+  },
+  "devDependencies": {
+    "sass": "^1.30.0"
+  },
+  "keywords": [
+    "sass",
+    "scss",
+    "mixin",
+    "mixins",
+    "yamoo9"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yamoo9/scss-mixins.git"
+  },
+  "homepage": "https://github.com/yamoo9/scss-mixins#readme",
+  "bugs": {
+    "url": "https://github.com/yamoo9/scss-mixins/issues"
+  }
+}

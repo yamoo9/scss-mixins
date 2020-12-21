@@ -1,0 +1,19 @@
+@mixin selection($args...) {
+  @if length($args) == 0 {
+    ::-moz-selection {
+      @content;
+    }
+    ::selection {
+      @content;
+    }
+  } @else {
+    @each $selector in $args {
+      #{$selector}::-moz-selection {
+        @content;
+      }
+      #{$selector}::selection {
+        @content;
+      }
+    }
+  }
+}

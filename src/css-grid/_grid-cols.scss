@@ -1,0 +1,27 @@
+// @include grid-cols(5);
+// @include grid-cols(none);
+// @include grid-cols(200px);
+// @include grid-cols(200px 400px 1fr);
+// 참고: https://tailwindcss.com/docs/grid-template-cols
+
+@mixin grid-cols($n: null) {
+  // 아무런 값을 전달 받지 않은 경우
+  @if $n == null {
+    @error 'grid-cols() 믹스인 사용 시, 숫자 또는 none 값을 전달해야 합니다.';
+  }
+
+  // none 값을 전달 받은 경우
+  @if $n == 'none' {
+    grid-template-columns: none;
+  }
+
+  // 단위 없는 숫자 값만 전달받은 경우
+  @if type-of($n) == 'number' and unitless($n) {
+    grid-template-columns: repeat($n, minmax(0, 1fr));
+  }
+
+  // 단위가 있는 숫자 또는 리스트 값을 전달받은 경우
+  @if type-of($n) == 'number' and not unitless($n) or type-of($n) == 'list' {
+    grid-template-columns: $n;
+  }
+}
