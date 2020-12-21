@@ -2,6 +2,10 @@
   "name": "@euid/scss-mixins",
   "version": "0.0.1",
   "description": "이듬(E.UID)이 제공하는 SCSS 믹스인",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "yamoo9 <yamoo9@naver.com>",
   "license": "MIT",
   "main": "_index.scss",
