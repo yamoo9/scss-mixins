@@ -66,6 +66,10 @@
   }
 }
 
+@mixin m($value) {
+  @include margin($value);
+}
+
 @mixin mx($value) {
   @include margin(left $value right $value);
 }
@@ -140,6 +144,10 @@
   } @else {
     padding: $args;
   }
+}
+
+@mixin p($value) {
+  @include padding($value);
 }
 
 @mixin px($value) {
