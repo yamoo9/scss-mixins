@@ -3,9 +3,16 @@
 @import '../config';
 
 //* -------------------------------------------------------------------------- */
+
 .demo {
-  @include text(align center transform overline indent rem(20px) height 1.2);
+  @include grid(none, 3);
+
+  .item {
+    @include area(null, 4);
+  }
 }
+
+@include box-sizing-with-selector(content-box, '.demo');
 
 .flexContainer {
   @include flex-container(column wrap items-center justify-start content-end);

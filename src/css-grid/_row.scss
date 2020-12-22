@@ -37,7 +37,7 @@
 // @include row(end, 5);
 // @include row(start-end, 3 5);
 
-@mixin row($type, $value) {
+@mixin row($type, $value: null) {
   @if $type == 'span' {
     @include row-span($value);
   }
@@ -50,5 +50,8 @@
   @if $type == 'start-end' or $type == 'se' {
     @include row-start(nth($value, 1));
     @include row-end(nth($value, 2));
+  }
+  @if not isValidKeywords($type, span start end start-end s e se) {
+    grid-row: if(type-of($type) == string, unquote($type), $type);
   }
 }
