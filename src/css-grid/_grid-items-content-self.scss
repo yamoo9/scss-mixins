@@ -9,14 +9,14 @@ $using-place-layout: false !default;
   }
 }
 
-@mixin items($justify, $align: null) {
+@mixin items($justify: null, $align: null) {
   @include grid-justify-align-layout('items', $justify, $align);
 }
 
-@mixin content($justify, $align: null) {
+@mixin content($justify: null, $align: null) {
   @include grid-justify-align-layout('content', $justify, $align);
 }
 
-@mixin self($justify, $align: null) {
+@mixin self($justify: null, $align: null) {
   @include grid-justify-align-layout('self', $justify, $align);
 }
