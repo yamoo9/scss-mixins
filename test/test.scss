@@ -3,6 +3,9 @@
 @import '../config';
 
 //* -------------------------------------------------------------------------- */
+.demo {
+  @include text(align center transform overline indent rem(20px) height 1.2);
+}
 
 .flexContainer {
   @include flex-container(column wrap items-center justify-start content-end);

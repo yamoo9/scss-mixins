@@ -1,0 +1,56 @@
+@mixin font-size-padding($fz, $p) {
+  // 전달 받은 $p 유형 검사
+  $typeCollection: list number string;
+
+  // 개발자가 요구하는 데이터 유형이 올바르게 전달된 경우 → 처리
+  @if isValideTypes($p, $typeCollection) {
+    $p-type: type-of($p);
+    // 숫자인 경우
+    @if $p-type == 'number' {
+      padding: em($p, $fz);
+    }
+
+    // 문자인 경우
+    @if $p-type == 'string' {
+      padding: $p;
+    }
+
+    // 리스트인 경우
+    @if $p-type == 'list' {
+      // 새롭게 반환할 리스트 정의
+      $convert-padding-list: ();
+
+      @each $value in $p {
+        // 값이 숫자인 경우 (예: 10px)
+        @if type-of($value) == 'number' {
+          $convert-padding-list: append($convert-padding-list, em($value, $fz));
+        }
+
+        // 값이 문자인 경우 (예: auto)
+        @if type-of($value) == 'string' {
+          $convert-padding-list: append($convert-padding-list, $value);
+        }
+      }
+
+      padding: $convert-padding-list;
+    }
+  }
+  // 개발자가 요구하지 않은 데이터 유형이 전달된 경우 → 오류 표시
+  @else {
+    @error '전달 받은 #{$p} 값은 요구되는 #{join($typeCollection, [], $separator: comma, $bracketed: true)} 유형이 아닙니다.';
+  }
+
+  // ----------------------------------------------
+
+  // $fz 전달 인자: 유효성 검사(validation)
+  @if type-of($fz) != 'number' {
+    @error '전달 받은 #{$fz} 값은 숫자 유형이 아닙니다.';
+  }
+  // $fz 값을 설정
+  font-size: rem($fz);
+}
+
+// 별칭 믹스인 등록
+@mixin fzp($fz, $p) {
+  @include font-size-padding($fz, $p);
+}

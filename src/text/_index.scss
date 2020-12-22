@@ -1,0 +1,16 @@
+@mixin text($args) {
+  $props: align indent transform height;
+
+  @each $prop in $props {
+    $prop-index: index($args, $prop);
+    @if $prop-index {
+      $value: nth($args, $prop-index + 1);
+      @if $prop == 'align' or $prop == 'indent' or $prop == 'transform' {
+        text-#{$prop}: $value;
+      }
+      @if $prop == 'height' {
+        line-height: $value;
+      }
+    }
+  }
+}
