@@ -4,33 +4,55 @@
 
 //* -------------------------------------------------------------------------- */
 
-@include selection() {
-  background: getColor(black);
-  color: getColor(white);
+.flexContainer {
+  @include flex-container(column wrap items-center justify-start content-end);
 }
 
-@include selection(img, button) {
-  background: transparent;
-  color: transparent;
+.flexItem-1 {
+  @include flex-item(grow 1 shrink 0 basis 100% self-start);
+  @include order(last);
 }
 
-.test {
-  @include flex-container(column nowrap justify-evenly align-center);
+.flexItem-2 {
+  @include flex(1);
+  @include flex(auto);
+  @include flex(initial);
+  @include flex(none);
+}
 
+.gridContainer {
   @include grid(2, 3, rem(10px));
+  @include grid-auto(minmax(rem(100px), auto), minmax(rem(80px), 1fr));
+  @include items(center, start);
+  @include content(space-between, stretch);
+}
 
-  @include mx(rem(20px));
+.gridItem-1 {
+  @include row(start-end, 1 4);
+  @include col(span, 2);
+}
+
+.gridItem-2 {
+  @include row(se, 4 5);
+  @include col-span(full);
+}
+
+.gridItem-3 {
+  @include area(1 -1, 2 3);
+  @include self(end, end);
+}
+
+.mediaDemo {
+  @include flex-container(column items-start justify-center);
+  background: getColor(white);
   color: getColor(black);
 
-  .item {
-    @include area(2 3, 4 8);
-    // @include order(1);
-    // @include flex(none);
-    @include flex-item(order 2 grow 1 shrink 0 basis 0%);
-    @include a11y-hidden();
+  @include media('>lg') {
+    flex-direction: row;
+  }
 
-    @include media('>=lg', 'landscape') {
-      @include area(3 -1, 2 5);
-    }
+  @include media('>lg', 'dark-mode') {
+    background: getColor(black);
+    color: getColor(white);
   }
 }
