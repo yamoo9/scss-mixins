@@ -3,14 +3,12 @@
 //* ---------------------------------------------------------------------------
 
 //* --------------------------------------------------------------------------
-/// em 단위 기본 값 설정
+// em, rem 단위 기본 값 설정
 $base-em-size: 16px;
-
-/// rem 단위 기본 값 설정
 $base-rem-size: 16px;
 
 //* --------------------------------------------------------------------------
-/// 컬러 스킴 설정
+// 컬러 스킴 설정 (`컬러-이름: 값`을 임의로 추가해 사용)
 $colors: (
   black: #010101,
   white: #fefefe,
@@ -19,14 +17,27 @@ $colors: (
 
 //* --------------------------------------------------------------------------
 // 박스 정렬 설정
-
-/// justify-*, align-* 대신 place-* 속성 사용하고자 할 경우 true 설정
+// justify-*, align-* 대신 place-* 속성 사용하고자 할 경우 true 설정
 $using-place-layout: false;
 
 //* --------------------------------------------------------------------------
 // 미디어 쿼리 설정
+// 라이브러리: https://eduardoboucas.github.io/include-media/
 
-/// 중단점 설계 (import-media 라이브러리 활용) → 임의의 키워드 사용 가능
+// 미디워 퀴리 설정 여부 (기본 값: true)
+$im-media-support: true;
+
+// $im-media-support 값이 false일 경우,
+// 설정된 미디어 쿼리 키워드 이상 스크린 너비는 무시 처리
+$im-no-media-breakpoint: 'x-lg';
+
+// $im-media-support 값이 false일 경우에도
+// 허용할 미디어 식 값을 설정
+// 참고: https://bit.ly/3h75qGw
+$im-no-media-expressions: ('screen');
+
+// 중단점 설계 (import-media 라이브러리 활용) → 임의의 키워드 사용 가능
+// 참고: https://bit.ly/2J9wKYe
 $breakpoints: (
   'md': 768px,
   'lg': 1024px,
@@ -34,7 +45,8 @@ $breakpoints: (
   '2x-lg': 1440px,
 );
 
-/// 미디어 표현식 설계 (import-media 라이브러리 활용) → 임의의 키워드 사용 가능
+// 미디어 표현식 설계 (import-media 라이브러리 활용) → 임의의 키워드 사용 가능
+// 참고: https://mzl.la/2KMpm5o
 $media-expressions: (
   'landscape': '(orientation: landscape)',
   'portrait': '(orientation: portrait)',
@@ -42,4 +54,6 @@ $media-expressions: (
     '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)',
   'retina3x':
     '(-webkit-min-device-pixel-ratio: 3), (min-resolution: 350dpi), (min-resolution: 3dppx)',
+  'dark-mode': '(prefers-color-scheme: dark)',
+  'no-motion': '(prefers-reduced-motion: reduce)',
 );
