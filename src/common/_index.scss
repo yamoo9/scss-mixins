@@ -1,0 +1,10 @@
+@import './normalize';
+@import './inherit-pseudo-content';
+@import './box-sizing';
+
+//* -------------------------------------------------------------------------- */
+
+@mixin initialize() {
+  @include normalize();
+  @include reset-box-sizing();
+}

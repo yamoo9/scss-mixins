@@ -1,0 +1,6 @@
+@mixin inherit-pseudo-content($prop) {
+  &::before,
+  &::after {
+    #{$prop}: inherit;
+  }
+}
