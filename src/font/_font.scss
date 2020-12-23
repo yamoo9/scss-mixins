@@ -1,0 +1,35 @@
+//* CSS Font 속성 -------------------------------------------------------------- */
+// font-style
+// font-weight
+// font-variant
+// font-size
+// font-family
+// line-height
+// letter-spacing
+// word-spacing
+
+@mixin font($args) {
+  $props: style weight variant size family line-height letter-spacing
+    word-spacing;
+  @each $prop in $props {
+    $prop-index: index($args, $prop);
+    @if $prop-index {
+      $value: nth($args, $prop-index + 1);
+      @if $prop ==
+        'style' or
+        $prop ==
+        'weight' or
+        $prop ==
+        'variant' or
+        $prop ==
+        'size' or
+        $prop ==
+        'family'
+      {
+        font-#{$prop}: $value;
+      } @else {
+        #{$prop}: $value;
+      }
+    }
+  }
+}

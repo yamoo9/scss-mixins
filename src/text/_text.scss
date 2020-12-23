@@ -1,0 +1,25 @@
+//* CSS Text 속성 -------------------------------------------------------------- */
+// text-align
+// text-indent
+// text-transform
+// text-shadow
+// line-height
+// letter-spacing
+// word-spacing
+// white-space
+
+@mixin text($args) {
+  $props: align indent transform shadow line-height letter-spacing word-spacing
+    white-space;
+  @each $prop in $props {
+    $prop-index: index($args, $prop);
+    @if $prop-index {
+      $value: nth($args, $prop-index + 1);
+      @if $prop == 'align' or $prop == 'indent' or $prop == 'transform' {
+        text-#{$prop}: $value;
+      } @else {
+        #{$prop}: $value;
+      }
+    }
+  }
+}
