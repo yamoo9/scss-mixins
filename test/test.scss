@@ -4,12 +4,39 @@
 
 //* -------------------------------------------------------------------------- */
 
+// 사용자 정의 믹스인
+@mixin hannna-font($size, $line-height: null, $weight: null) {
+  @include font(size $size weight $weight);
+  @include text(line-height $line-height);
+}
+
+//* -------------------------------------------------------------------------- */
+
 .demo {
-  @include grid(none, 3);
+  @include grid(2, 3);
+
+  @include media('>=lg', '<=#{em(1440px)}') {
+    @include grid-append(3, 2);
+  }
 
   .item {
     @include area(null, 4);
   }
+}
+
+.font-demo {
+  @include font(size rem(22px) family SpoqaHanSans letter-spacing em(-1px));
+
+  @include hannna-font(rem(14px), 1.6, bold);
+}
+
+.text-demo {
+  @include text(align center indent 50% transform underline line-height 1.2);
+  transition: all 0.3s ease(inout-back);
+}
+
+.text-ellipsis-demo {
+  @include ellipsis(200px);
 }
 
 @include box-sizing-with-selector(content-box, '.demo');

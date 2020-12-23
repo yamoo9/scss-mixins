@@ -39,10 +39,10 @@ $im-no-media-expressions: ('screen');
 // 중단점 설계 (import-media 라이브러리 활용) → 임의의 키워드 사용 가능
 // 참고: https://bit.ly/2J9wKYe
 $breakpoints: (
-  'md': 768px,
-  'lg': 1024px,
-  'x-lg': 1280px,
-  '2x-lg': 1440px,
+  'md': em(768px),
+  'lg': em(1024px),
+  'x-lg': em(1280px),
+  '2x-lg': em(1440px),
 );
 
 // 미디어 표현식 설계 (import-media 라이브러리 활용) → 임의의 키워드 사용 가능
