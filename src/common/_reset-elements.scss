@@ -1,0 +1,44 @@
+@mixin reset-box() {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  @content;
+}
+
+@mixin reset-img() {
+  border: 0;
+  vertical-align: middle;
+  @content;
+}
+
+@mixin rwd-content() {
+  max-width: 100%;
+  height: auto;
+  @content;
+}
+
+@mixin reset-list() {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style-type: none;
+  @content;
+}
+
+@mixin reset-button() {
+  user-select: none;
+  cursor: pointer;
+  @content;
+}
+
+@mixin reset-link() {
+  text-decoration: none;
+  color: inherit;
+  @content;
+}
+
+@mixin reset-abbr() {
+  cursor: help;
+  text-decoration: none;
+  @content;
+}

@@ -1,10 +1,29 @@
-@import './normalize';
 @import './inherit-pseudo-content';
+@import './reset-elements';
 @import './box-sizing';
+@import './normalize';
 
 //* -------------------------------------------------------------------------- */
 
-@mixin initialize() {
+@mixin initialize-reset() {
   @include normalize();
+  @include reset-box();
+  @include reset-img();
+  @include rwd-content();
+  @include reset-list();
+  @include reset-button();
+  @include reset-link();
   @include reset-box-sizing();
+
+  button {
+    @include reset-button();
+  }
+
+  img {
+    @include reset-img();
+  }
+
+  abbr[title] {
+    @include reset-abbr();
+  }
 }
