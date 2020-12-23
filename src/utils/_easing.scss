@@ -1,0 +1,94 @@
+$ease-inout-fast: cubic-bezier(1, 0, 0, 1) !default;
+$authentic-motion: cubic-bezier(0.4, 0, 0.2, 1) !default;
+
+/* -------------------------------------------------------------------------- */
+
+@function ease($value) {
+  $return-value: null;
+
+  @if $value == 'in-sine' {
+    $return-value: cubic-bezier(0.47, 0, 0.745, 0.715);
+  }
+  @if $value == 'out-sine' {
+    $return-value: cubic-bezier(0.39, 0.575, 0.565, 1);
+  }
+  @if $value == 'inout-sine' {
+    $return-value: cubic-bezier(0.39, 0.575, 0.565, 1);
+  }
+
+  @if $value == 'in-quad' {
+    $return-value: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  }
+  @if $value == 'out-quad' {
+    $return-value: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  @if $value == 'inout-quad' {
+    $return-value: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  @if $value == 'in-cubic' {
+    $return-value: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  @if $value == 'out-cubic' {
+    $return-value: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  @if $value == 'inout-cubic' {
+    $return-value: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  @if $value == 'in-quart' {
+    $return-value: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  }
+  @if $value == 'out-quart' {
+    $return-value: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  @if $value == 'inout-quart' {
+    $return-value: cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  @if $value == 'in-quint' {
+    $return-value: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  }
+  @if $value == 'out-quint' {
+    $return-value: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  @if $value == 'inout-quint' {
+    $return-value: cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  @if $value == 'in-expo' {
+    $return-value: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  }
+  @if $value == 'out-expo' {
+    $return-value: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  @if $value == 'inout-expo' {
+    $return-value: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  @if $value == 'in-circ' {
+    $return-value: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  }
+  @if $value == 'out-circ' {
+    $return-value: cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  @if $value == 'inout-circ' {
+    $return-value: cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+
+  @if $value == 'in-back' {
+    $return-value: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+  @if $value == 'out-back' {
+    $return-value: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  @if $value == 'inout-back' {
+    $return-value: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  @if not $return-value {
+    @error 'ease() 함수에 전달 가능한 값은 다음 중 하나입니다 ——→ in-sine, out-sine, inout-sine, in-quad, out-quad, inout-quad, in-cubic, out-cubic, inout-cubic, in-quart, out-quart, inout-quart, in-quint, out-quint, inout-quint, in-expo, out-expo, inout-expo, in-circ, out-circ, inout-circ, in-back, out-back, inout-back';
+  }
+
+  @return $return-value;
+}

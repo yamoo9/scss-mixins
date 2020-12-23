@@ -1,0 +1,22 @@
+//* -------------------------------------------------------------------------- */
+// 기본 변수
+
+$colors: (
+  black: #010101,
+  white: #fefefe,
+  gray: #787878,
+) !default;
+
+//* -------------------------------------------------------------------------- */
+
+@function getColor($name: null) {
+  @if not $name {
+    @error 'getColor() 함수의 첫번째 인자 `$name` 입력이 요구됩니다.';
+  }
+
+  @if map-has-key($colors, $name) {
+    @return map-get($colors, $name);
+  }
+
+  @error '설정 가능한 컬러 값은 #{map-keys($colors)} 중 하나여야 합니다';
+}
