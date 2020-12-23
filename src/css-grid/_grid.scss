@@ -2,7 +2,7 @@
 // @include grid(2, 3, rem(20px)) { ... };
 // 참고: https://tailwindcss.com/docs/display#grid
 
-@mixin grid-variant($rows: null, $cols: null, $gap: null) {
+@mixin grid-append($rows: null, $cols: null, $gap: null) {
   @if $rows != null {
     @include grid-rows($rows);
   }
@@ -16,12 +16,12 @@
 
 @mixin grid($rows: null, $cols: null, $gap: null) {
   display: grid;
-  @include grid-variant($rows, $cols, $gap);
+  @include grid-append($rows, $cols, $gap);
   @content;
 }
 
 @mixin inline-grid($rows: null, $cols: null, $gap: null) {
   display: inline-grid;
-  @include grid-variant($rows, $cols, $gap);
+  @include grid-append($rows, $cols, $gap);
   @content;
 }
