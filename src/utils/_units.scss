@@ -1,11 +1,13 @@
-//* -------------------------------------------------------------------------- */
-// 기본 변수
+/// em, rem 단위 별 글자 기본 크기
 
 $base-em-size: 16px !default;
 $base-rem-size: 16px !default;
 
 //* -------------------------------------------------------------------------- */
-// 단위 제거 유틸리티
+
+/// 단위 제거 유틸리티
+/// @param {number} $value 단위를 가진 숫자 값
+/// @return {number(unitless)} 단위를 제거한 숫자 값
 
 @function remove-unit($value) {
   @return ($value / ($value * 0 + 1));
@@ -15,31 +17,38 @@ $base-rem-size: 16px !default;
 // 단위 변경 유틸리티
 
 // px → em
-@function px2em($px, $base: $base-em-size) {
+@function _px2em($px, $base: $base-em-size) {
   @return (remove-unit($px / $base)) * 1em;
 }
 
 // em → px
-@function em2px($em, $base: $base-em-size) {
+@function _em2px($em, $base: $base-em-size) {
   @return (remove-unit($em * $base)) * 1px;
 }
 
-// 별칭 em()
-@function em($px, $base: $base-em-size) {
-  @return px2em($px, $base);
-}
-
 // px → rem
-@function px2rem($px, $base: $base-rem-size) {
+@function _px2rem($px, $base: $base-rem-size) {
   @return (remove-unit($px / $base)) * 1rem;
 }
 
-// rem → px
-@function rem2px($rem, $base: $base-rem-size) {
+@function _rem2px($rem, $base: $base-rem-size) {
   @return (remove-unit($rem * $base)) * 1px;
 }
 
-// 별칭 rem()
+/// px → em 단위 변경 유틸리티
+/// @param {number} $px px 단위를 가진 숫자 값
+/// @param {number} $base [$base-em-size] 계산에 사용되는 기준 값(px)
+/// @returns {number} 계산된 em 단위 숫자 값
+
+@function em($px, $base: $base-em-size) {
+  @return _px2em($px, $base);
+}
+
+/// px → rem 단위 변경 유틸리티
+/// @param {number} $px px 단위를 가진 숫자 값
+/// @param {number} $base [$base-em-size] 계산에 사용되는 기준 값(px)
+/// @returns {number} 계산된 rem 단위 숫자 값
+
 @function rem($px, $base: $base-rem-size) {
-  @return px2rem($px, $base);
+  @return _px2rem($px, $base);
 }

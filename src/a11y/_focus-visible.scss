@@ -1,15 +1,15 @@
-/* 포커스 적용한 경우 */
+//* 포커스 적용한 경우 */
 @mixin focus-visible($selector: '') {
   #{$selector}:focus {
     @content;
   }
 
-  /* 마우스로 클릭했을 때 */
+  //* 마우스로 클릭했을 때 */
   #{$selector}:focus:not(:focus-visible) {
     outline: none;
     box-shadow: none;
   }
-  /* 키보드로 포커싱 되어 화면에 표시 되어야 하는 경우 */
+  //* 키보드로 포커싱 되어 화면에 표시 되어야 하는 경우 */
   #{$selector}:focus-visible {
     @content;
   }
