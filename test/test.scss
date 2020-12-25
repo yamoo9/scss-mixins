@@ -1,6 +1,9 @@
 // 프로젝트 구성(config) 파일
-@import '../index';
+@import './index';
 @import '../config';
+
+// $im-media-support: false;
+// $im-no-media-breakpoint: 'x-lg';
 
 //* -------------------------------------------------------------------------- */
 
@@ -8,6 +11,29 @@
 @mixin hannna-font($size, $line-height: null, $weight: null) {
   @include font(size $size weight $weight);
   @include text(line-height $line-height);
+  @include media('no-motion') {
+    @include font(size 20px);
+  }
+}
+
+//* -------------------------------------------------------------------------- */
+
+// $easings: ease-add(in-euid, cubic-bezier(0.43, 0.16, 0.7, 0.52));
+
+$easings: ease-merge(
+  (
+    in-euid: cubic-bezier(0.43, 0.16, 0.7, 0.52),
+    out-euid: cubic-bezier(0.31, 0.16, 0.56, 0.99),
+    inout-euid: cubic-bezier(0.94, 0.01, 0.47, 1.13),
+  )
+);
+
+@debug length($easings);
+
+.demo {
+  background: getColor(black);
+  // @debug last(map-keys($colors));
+  transition: all 0.3s ease(out-euid);
 }
 
 //* -------------------------------------------------------------------------- */
@@ -15,8 +41,8 @@
 .demo {
   @include grid(2, 3);
 
-  @include media('>=lg', '<=#{em(1440px)}') {
-    @include grid-append(3, 2);
+  @include media('>=x-lg') {
+    @include grid-append(3, 2, rem(20px));
   }
 
   .item {

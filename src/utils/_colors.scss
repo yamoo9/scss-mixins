@@ -1,22 +1,36 @@
-//* -------------------------------------------------------------------------- */
-// 기본 변수
+/// 컬러 구성표(Color Scheme)
 
 $colors: (
-  black: #010101,
-  white: #fefefe,
-  gray: #787878,
+  black: #000,
+  white: #fff,
+  gray: #808080,
 ) !default;
 
 //* -------------------------------------------------------------------------- */
 
-@function getColor($name: null) {
-  @if not $name {
-    @error 'getColor() 함수의 첫번째 인자 `$name` 입력이 요구됩니다.';
-  }
+/// 컬러 값 반환 유틸리티
+/// @param {string} $name [null] color 이름
+/// @return {color} 등록된 컬러 이름과 전달된 컬러 이름이 매칭 될 경우 컬러 값 반환
 
+@function get-color($name: null) {
   @if map-has-key($colors, $name) {
     @return map-get($colors, $name);
+  } @else {
+    @error '설정 가능한 컬러 값은 #{map-keys($colors)} 중 하나입니다.';
   }
+}
 
-  @error '설정 가능한 컬러 값은 #{map-keys($colors)} 중 하나여야 합니다';
+/// 컬러 이름 반환 유틸리티
+/// @param {color} $value [null] color 값
+/// @return {string} 등록된 컬러 값과 전달된 컬러 값이 매칭 될 경우 컬러 이름 반환
+
+@function get-color-name($value: null) {
+  $color-keys: map-keys($colors);
+  $color-values: map-values($colors);
+  $color-value-index: index($color-values, $value);
+  @if $color-value-index {
+    @return nth($color-keys, $color-value-index);
+  } @else {
+    @error '#{$value} 컬러 값과 매칭되는 컬러 이름이 존재하지 않습니다.';
+  }
 }

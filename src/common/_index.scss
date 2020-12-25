@@ -15,6 +15,13 @@
   @include reset-link();
   @include reset-box-sizing();
 
+  :root {
+    // 참고: https://sass-lang.com/documentation/modules/meta#global-variable-exists
+    @if global-variable-exists('base-rem-size') {
+      font-size: $base-rem-size;
+    }
+  }
+
   button {
     @include reset-button();
   }
