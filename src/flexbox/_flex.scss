@@ -23,7 +23,7 @@
   @if $value == none {
     flex: none;
   }
-  @if not isValidKeywords($value, 1 auto initial none) {
+  @if not is-valid-keywords($value, 1 auto initial none) {
     flex: $value;
   }
 }

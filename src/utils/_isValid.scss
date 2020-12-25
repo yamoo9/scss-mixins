@@ -1,18 +1,18 @@
 //* -------------------------------------------------------------------------- */
 // 타입 or 키워드 검사 유틸리티
 
-@function isValidTypes($data, $typeCollection) {
-  @each $validType in $typeCollection {
-    @if type-of($data) == $validType {
+@function is-valid-types($data, $typelist) {
+  @each $valid-type in $typelist {
+    @if type-of($data) == $valid-type {
       @return true;
     }
   }
   @return false;
 }
 
-@function isValidKeywords($data, $keywordsCollection) {
-  @each $validKeyword in $keywordsCollection {
-    @if $data == $validKeyword {
+@function is-valid-keywords($data, $keywordslist) {
+  @each $valid-keyword in $keywordslist {
+    @if $data == $valid-keyword {
       @return true;
     }
   }

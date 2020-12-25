@@ -51,7 +51,7 @@
     @include row-start(nth($value, 1));
     @include row-end(nth($value, 2));
   }
-  @if not isValidKeywords($type, span start end start-end s e se) {
+  @if not is-valid-keywords($type, span start end start-end s e se) {
     grid-row: if(type-of($type) == string, unquote($type), $type);
   }
 }

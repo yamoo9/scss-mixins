@@ -14,7 +14,7 @@
     initial,
     unset
   );
-  @if $value == null or not isValidKeywords($value, $keywords) {
+  @if $value == null or not is-valid-keywords($value, $keywords) {
     @error 'auto-flow() 믹스인은 #{$keywords} 값만 전달 받을 수 있습니다.';
   }
 
@@ -43,7 +43,7 @@
   @if $value == fr {
     grid-auto-rows: minmax(0, 1fr);
   }
-  @if not isValidKeywords($value, auto min max fr) {
+  @if not is-valid-keywords($value, auto min max fr) {
     grid-auto-rows: $value;
   }
 }
@@ -70,7 +70,7 @@
   @if $value == fr {
     grid-auto-columns: minmax(0, 1fr);
   }
-  @if not isValidKeywords($value, auto min max fr) {
+  @if not is-valid-keywords($value, auto min max fr) {
     grid-auto-columns: $value;
   }
 }
@@ -89,7 +89,7 @@
   @if $type == cols {
     @include auto-cols($value);
   }
-  @if not isValidKeywords($type, flow rows cols) {
+  @if not is-valid-keywords($type, flow rows cols) {
     @include auto-rows($type);
     @include auto-cols($value);
   }

@@ -11,7 +11,7 @@
   @if $value == 'last' {
     order: 9999;
   }
-  @if not isValidKeywords($value, none first last) {
+  @if not is-valid-keywords($value, none first last) {
     order: $value;
   }
 }
