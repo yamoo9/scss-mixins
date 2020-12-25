@@ -21,6 +21,17 @@ $colors: (
 $using-place-layout: false;
 
 //* --------------------------------------------------------------------------
+// 커스텀 이징 함수 설정
+
+$easings: ease-merge(
+  (
+    in-euid: cubic-bezier(0.43, 0.16, 0.7, 0.52),
+    out-euid: cubic-bezier(0.31, 0.16, 0.56, 0.99),
+    inout-euid: cubic-bezier(0.94, 0.01, 0.47, 1.13),
+  )
+);
+
+//* --------------------------------------------------------------------------
 // 미디어 쿼리 설정
 // 라이브러리: https://eduardoboucas.github.io/include-media/
 
@@ -39,10 +50,10 @@ $im-no-media-expressions: ('screen');
 // 중단점 설계 (import-media 라이브러리 활용) → 임의의 키워드 사용 가능
 // 참고: https://bit.ly/2J9wKYe
 $breakpoints: (
-  'md': em(768px),
-  'lg': em(1024px),
-  'x-lg': em(1280px),
-  '2x-lg': em(1440px),
+  md: em(768px),
+  lg: em(1024px),
+  x-lg: em(1280px),
+  2x-lg: em(1440px),
 );
 
 // 미디어 표현식 설계 (import-media 라이브러리 활용) → 임의의 키워드 사용 가능
