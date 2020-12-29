@@ -1,0 +1,73 @@
+@mixin select($font-size: rem(14), $radius: rem(3)) {
+  position: relative;
+  color: inherit;
+
+  &::after {
+    pointer-events: none;
+    content: '\25BE';
+    @include absolute(top rem(10) right rem(15));
+    color: alt-color(state-normal, #707070);
+  }
+
+  // IE9, IE10
+  select::-ms-expand {
+    display: none;
+  }
+
+  select {
+    @include appearance(none);
+
+    width: 100%;
+    height: rem(39);
+
+    outline: none;
+    margin-bottom: rem(10);
+    border: rem(1) solid lighten(alt-color(state-normal, #707070), 10%);
+    border-radius: $radius;
+    padding-left: rem(10);
+
+    font-family: inherit;
+    font-size: $font-size;
+
+    background-color: alt-color(white, #fff);
+
+    &:focus {
+      border-color: alt-color(state-focus, #1870d4);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: alt-color(state-disabled, #dedede);
+    }
+  }
+}
+
+@mixin select-multiple(
+  $font-size: rem(14),
+  $padding: 0 rem(10),
+  $radius: rem(3)
+) {
+  @include appearance(none);
+
+  width: 100%;
+
+  outline: none;
+  margin-bottom: rem(10);
+  border: rem(1) solid lighten(alt-color(state-normal, #707070), 10%);
+  border-radius: $radius;
+  padding: $padding;
+
+  font-family: inherit;
+  font-size: $font-size;
+
+  background-color: white;
+
+  &:focus {
+    border-color: alt-color(state-focus, #1870d4);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: alt-color(state-disabled, #dedede);
+  }
+}

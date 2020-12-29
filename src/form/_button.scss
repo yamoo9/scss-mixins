@@ -1,0 +1,45 @@
+@mixin button($font-size: rem(14), $padding: rem(12) rem(24), $radius: rem(3)) {
+  cursor: pointer;
+  box-sizing: border-box;
+
+  min-height: rem(39);
+
+  outline: none;
+  margin-bottom: rem(10);
+  border: none;
+  border-radius: $radius;
+  padding: $padding;
+
+  font-family: inherit;
+  font-size: $font-size;
+  text-decoration: none;
+
+  background-color: alt-color(white, #fff);
+
+  // Firefox 점선 제거
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:hover,
+  &:focus {
+    box-shadow: 0 rem(2) 0 alt-color(state-normal, #707070);
+  }
+
+  &:active {
+    box-shadow: inset 0 rem(2) 0 darken(alt-color(state-active, #185158), 10%);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: darken(alt-color(state-disabled, #dedede), 30%);
+    background-color: alt-color(state-disabled, #dedede);
+
+    &:hover,
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  @content;
+}

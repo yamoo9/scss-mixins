@@ -1,0 +1,33 @@
+@mixin input($font-size: rem(14), $padding: rem(10), $radius: rem(3)) {
+  outline: none;
+  box-sizing: border-box;
+
+  width: 100%;
+  min-height: rem(39);
+
+  margin-bottom: rem(10);
+  border: rem(1) solid lighten(alt-color(state-normal, #707070), 10%);
+  border-radius: $radius;
+  padding: $padding;
+
+  font-family: inherit;
+  font-size: $font-size;
+  vertical-align: middle;
+
+  background-color: alt-color(white, #fff);
+
+  &:hover {
+    border-color: alt-color(state-hover, #35a1af);
+  }
+
+  &:focus {
+    border-color: alt-color(state-focus, #1870d4);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: alt-color(state-disabled, #dedede);
+  }
+
+  @content;
+}

@@ -13,6 +13,15 @@ $colors: (
   black: #010101,
   white: #fefefe,
   gray: #787878,
+  // -----------------------
+  // 상태
+  state-normal: #707070,
+  state-hover: #35a1af,
+  state-focus: #1870d4,
+  state-active: #185158,
+  state-disabled: #dedede,
+  state-valid: #219c5e,
+  state-invalid: #e72e6c,
 );
 
 //* --------------------------------------------------------------------------
