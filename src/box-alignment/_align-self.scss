@@ -1,0 +1,51 @@
+// 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/align-self
+
+@mixin align-self($value, $mode: grid) {
+  @if $value == 'self-auto' {
+    align-self: auto;
+  }
+
+  @if $value == 'self-normal' {
+    align-self: normal;
+  }
+
+  @if $value == 'self-start' {
+    align-self: if($mode == grid, start, flex-start);
+  }
+  @if $value == 'self-end' {
+    align-self: if($mode == grid, end, flex-end);
+  }
+  @if $value == 'self-center' {
+    align-self: center;
+  }
+  @if $value == 'self-stretch' {
+    align-self: stretch;
+  }
+
+  @if $value == 'self-baseline' {
+    align-self: baseline;
+  }
+  @if $value == 'self-first-baseline' {
+    align-self: first baseline;
+  }
+  @if $value == 'self-last-baseline' {
+    align-self: last baseline;
+  }
+
+  @if $value == 'self-safe' {
+    align-self: safe center;
+  }
+  @if $value == 'self-unsafe' {
+    align-self: unsafe center;
+  }
+
+  @if $value == 'self-inherit' {
+    align-self: inherit;
+  }
+  @if $value == 'self-initial' {
+    align-self: initial;
+  }
+  @if $value == 'self-unset' {
+    align-self: unset;
+  }
+}

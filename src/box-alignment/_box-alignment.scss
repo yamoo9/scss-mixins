@@ -1,0 +1,10 @@
+$using-place-layout: false !default;
+
+@mixin box-alignment($type, $justify, $align) {
+  @if not $using-place-layout {
+    justify-#{$type}: $justify;
+    align-#{$type}: $align;
+  } @else {
+    place-#{$type}: $align $justify;
+  }
+}

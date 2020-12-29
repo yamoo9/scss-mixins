@@ -1,0 +1,56 @@
+// 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-items
+
+@mixin justify-items($value, $mode: grid) {
+  @if $value == 'items-auto' {
+    justify-items: auto;
+  }
+  @if $value == 'items-normal' {
+    justify-items: normal;
+  }
+  @if $value == 'items-stretch' {
+    justify-items: stretch;
+  }
+
+  @if $value == 'items-start' {
+    justify-items: if($mode == grid, start, flex-start);
+  }
+  @if $value == 'items-end' {
+    justify-items: if($mode == grid, end, flex-end);
+  }
+  @if $value == 'items-center' {
+    justify-items: center;
+  }
+  @if $value == 'items-left' {
+    justify-items: left;
+  }
+  @if $value == 'items-right' {
+    justify-items: right;
+  }
+
+  @if $value == 'items-baseline' {
+    justify-items: baseline;
+  }
+  @if $value == 'items-first-baseline' {
+    justify-items: first baseline;
+  }
+  @if $value == 'items-last-baseline' {
+    justify-items: last baseline;
+  }
+
+  @if $value == 'items-safe' {
+    justify-items: safe center;
+  }
+  @if $value == 'items-unsafe' {
+    justify-items: unsafe center;
+  }
+
+  @if $value == 'items-inherit' {
+    justify-items: inherit;
+  }
+  @if $value == 'items-initial' {
+    justify-items: initial;
+  }
+  @if $value == 'items-unset' {
+    justify-items: unset;
+  }
+}

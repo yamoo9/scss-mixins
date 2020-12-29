@@ -1,0 +1,53 @@
+// 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content
+
+@mixin justify-content($value, $mode: grid) {
+  @if $value == 'justify-start' {
+    justify-content: if($mode == grid, start, flex-start);
+  }
+  @if $value == 'justify-end' {
+    justify-content: if($mode == grid, end, flex-end);
+  }
+  @if $value == 'justify-center' {
+    justify-content: center;
+  }
+  @if $value == 'justify-left' {
+    justify-content: left;
+  }
+  @if $value == 'justify-right' {
+    justify-content: right;
+  }
+
+  @if $value == 'justify-normal' {
+    justify-content: normal;
+  }
+
+  @if $value == 'justify-between' {
+    justify-content: space-between;
+  }
+  @if $value == 'justify-around' {
+    justify-content: space-around;
+  }
+  @if $value == 'justify-evenly' {
+    justify-content: space-evenly;
+  }
+  @if $value == 'justify-stretch' {
+    justify-content: stretch;
+  }
+
+  @if $value == 'justify-safe' {
+    justify-content: safe center;
+  }
+  @if $value == 'justify-unsafe' {
+    justify-content: unsafe center;
+  }
+
+  @if $value == 'justify-inherit' {
+    justify-content: inherit;
+  }
+  @if $value == 'justify-initial' {
+    justify-content: initial;
+  }
+  @if $value == 'justify-unset' {
+    justify-content: unset;
+  }
+}

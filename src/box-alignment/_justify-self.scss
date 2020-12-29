@@ -1,0 +1,56 @@
+// 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self
+
+@mixin justify-self($value, $mode: grid) {
+  @if $value == 'self-auto' {
+    justify-self: auto;
+  }
+  @if $value == 'self-normal' {
+    justify-self: normal;
+  }
+  @if $value == 'self-stretch' {
+    justify-self: stretch;
+  }
+
+  @if $value == 'self-start' {
+    justify-self: if($mode == grid, start, flex-start);
+  }
+  @if $value == 'self-end' {
+    justify-self: if($mode == grid, end, flex-end);
+  }
+  @if $value == 'self-center' {
+    justify-self: center;
+  }
+  @if $value == 'self-left' {
+    justify-self: left;
+  }
+  @if $value == 'self-right' {
+    justify-self: right;
+  }
+
+  @if $value == 'self-baseline' {
+    justify-self: baseline;
+  }
+  @if $value == 'self-first-baseline' {
+    justify-self: first baseline;
+  }
+  @if $value == 'self-last-baseline' {
+    justify-self: last baseline;
+  }
+
+  @if $value == 'self-safe' {
+    justify-self: safe center;
+  }
+  @if $value == 'self-unsafe' {
+    justify-self: unsafe center;
+  }
+
+  @if $value == 'self-inherit' {
+    justify-self: inherit;
+  }
+  @if $value == 'self-initial' {
+    justify-self: initial;
+  }
+  @if $value == 'self-unset' {
+    justify-self: unset;
+  }
+}

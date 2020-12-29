@@ -1,0 +1,46 @@
+// 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
+
+@mixin align-items($value, $mode: grid) {
+  @if $value == 'items-normal' {
+    align-items: normal;
+  }
+  @if $value == 'items-stretch' {
+    align-items: stretch;
+  }
+
+  @if $value == 'items-start' {
+    align-items: if($mode == grid, start, flex-start);
+  }
+  @if $value == 'items-end' {
+    align-items: if($mode == grid, end, flex-end);
+  }
+  @if $value == 'items-center' {
+    align-items: center;
+  }
+
+  @if $value == 'items-baseline' {
+    align-items: baseline;
+  }
+  @if $value == 'items-first-baseline' {
+    align-items: first baseline;
+  }
+  @if $value == 'items-last-baseline' {
+    align-items: last baseline;
+  }
+  @if $value == 'items-safe' {
+    align-items: safe center;
+  }
+  @if $value == 'items-unsafe' {
+    align-items: unsafe center;
+  }
+
+  @if $value == 'items-inherit' {
+    align-items: inherit;
+  }
+  @if $value == 'items-initial' {
+    align-items: initial;
+  }
+  @if $value == 'items-unset' {
+    align-items: unset;
+  }
+}
