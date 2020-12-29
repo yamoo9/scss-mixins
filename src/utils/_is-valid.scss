@@ -18,3 +18,13 @@
   }
   @return false;
 }
+
+@function is-include-items($list, $comparelist) {
+  $result-list: ();
+
+  @each $item in $list {
+    $result-list: append($result-list, is-valid-keywords($item, $comparelist));
+  }
+
+  @return type-of(index($result-list, true)) == 'number';
+}

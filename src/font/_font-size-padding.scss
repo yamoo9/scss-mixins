@@ -1,9 +1,9 @@
 @mixin font-size-padding($fz, $p) {
   // 전달 받은 $p 유형 검사
-  $typeCollection: list number string;
+  $type-collection: list number string;
 
   // 개발자가 요구하는 데이터 유형이 올바르게 전달된 경우 → 처리
-  @if isValideTypes($p, $typeCollection) {
+  @if is-valid-types($p, $type-collection) {
     $p-type: type-of($p);
     // 숫자인 경우
     @if $p-type == 'number' {
@@ -37,7 +37,7 @@
   }
   // 개발자가 요구하지 않은 데이터 유형이 전달된 경우 → 오류 표시
   @else {
-    @error '전달 받은 #{$p} 값은 요구되는 #{join($typeCollection, [], $separator: comma, $bracketed: true)} 유형이 아닙니다.';
+    @error '전달 받은 #{$p} 값은 요구되는 #{join($type-collection, [], $separator: comma, $bracketed: true)} 유형이 아닙니다.';
   }
 
   // ----------------------------------------------
