@@ -2,11 +2,10 @@
   position: $position;
 
   @if $args != null {
-    @each $dir in top, left, bottom, right, z-index {
-      $i: index($args, $dir);
-
-      @if $i {
-        #{$dir}: nth($args, $i + 1);
+    @each $prop in top, left, bottom, right, z-index {
+      $has-prop: index($args, $prop);
+      @if $has-prop {
+        #{$prop}: get-value-after-key($args, $prop);
       }
     }
   }
