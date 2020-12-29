@@ -5,3 +5,8 @@
 @function last($list) {
   @return nth($list, length($list));
 }
+
+@function get-value-after-key($key-value-list, $key) {
+  $key-index: index($key-value-list, $key);
+  @return if($key-index, nth($key-value-list, $key-index + 1), null);
+}
