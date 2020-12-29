@@ -34,3 +34,20 @@ $colors: (
     @error '#{$value} 컬러 값과 매칭되는 컬러 이름이 존재하지 않습니다.';
   }
 }
+
+/// 컬러 이름 소유 여부 반환 유틸리티
+/// @param {string} $name color 이름
+/// @return {bool} $colors 맵 안에 color 이름이 존재하는 지 여부 반환
+
+@function has-color($name) {
+  @return map-has-key($colors, $name);
+}
+
+/// 대체 컬러 유틸리티
+/// @param {string} $name color 이름
+/// @param {color} $alt-value 대체 color 값
+/// @return {color} $colors 맵 안에 color 이름이 존재할 경우 해당 값, 존재하지 않을 경우 대체 값 반환
+
+@function alt-color($name, $alt-value) {
+  @return if(has-color($name), get-color($name), $alt-value);
+}
