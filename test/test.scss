@@ -1,5 +1,5 @@
 // 프로젝트 구성(config) 파일
-@import './index';
+@import '../index';
 @import '../config';
 
 // $im-media-support: false;
@@ -28,15 +28,19 @@ $easings: ease-merge(
   )
 );
 
-@debug length($easings);
-
 .demo {
   background: getColor(black);
   // @debug last(map-keys($colors));
   transition: all 0.3s ease(out-euid);
+
+  @include box-alignment(content, center, center);
 }
 
 //* -------------------------------------------------------------------------- */
+
+.usage {
+  @include flex-c(column wrap justify-end items-center);
+}
 
 .demo {
   @include grid(2, 3);
@@ -72,8 +76,8 @@ $easings: ease-merge(
 }
 
 .flexItem-1 {
-  @include flex-item(grow 1 shrink 0 basis 100% self-start);
-  @include order(last);
+  @include flex-item(self-end shrink 0 order 10);
+  // @include order(last);
 }
 
 .flexItem-2 {

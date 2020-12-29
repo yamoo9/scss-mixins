@@ -49,7 +49,6 @@ $ sass -I node_modules src/sass:dist/css
 
 ```sh
 # -I, --load-path=
-# <input_dir>:<output_dir>
 $ sass --load-path=node_modules src/sass:dist/css
 ```
 
