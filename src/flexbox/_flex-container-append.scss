@@ -1,0 +1,106 @@
+// @include flex-container(row wrap justify-center items-center);
+// @include inline-flex-container();
+
+@mixin flex-container-append($args) {
+  @if $args != null {
+    // flex-direction ------------------------------------------
+    @each $direction in row row-reverse column column-reverse {
+      $direction-index: index($args, $direction);
+
+      @if $direction-index {
+        flex-direction: nth($args, $direction-index);
+      }
+    }
+
+    // flex-wrap -----------------------------------------------
+    @each $wrap in nowrap wrap wrap-reverse {
+      $wrap-index: index($args, $wrap);
+
+      @if $wrap-index {
+        flex-wrap: nth($args, $wrap-index);
+      }
+    }
+
+    // justify-content ------------------------------------------
+    @each $justifyContent
+      in justify-start
+      justify-center
+      justify-end
+      justify-left
+      justify-right
+      justify-normal
+      justify-between
+      justify-around
+      justify-evenly
+      justify-safe
+      justify-unsafe
+      justify-inherit
+      justify-initial
+      justify-unset
+    {
+      $justifyContent-index: index($args, $justifyContent);
+
+      @if $justifyContent-index {
+        $justifyContent-value: nth($args, $justifyContent-index);
+        @include justify-content($justifyContent-value, flex);
+      }
+    }
+
+    // align-items ------------------------------------------------
+    @each $alignItems
+      in items-normal
+      items-stretch
+      items-start
+      items-end
+      items-center
+      items-baseline
+      items-first-baseline
+      items-last-baseline
+      items-safe
+      items-unsafe
+      items-inherit
+      items-initial
+      items-unset
+    {
+      $alignItems-index: index($args, $alignItems);
+
+      @if $alignItems-index {
+        $alignItems-value: nth($args, $alignItems-index);
+        @include align-items($alignItems-value, flex);
+      }
+    }
+
+    // align-content ------------------------------------------------
+    @each $alignContent
+      in content-start
+      content-center
+      content-end
+      content-left
+      content-right
+      content-normal
+      content-baseline
+      content-first-baseline
+      content-last-baseline
+      content-between
+      content-around
+      content-evenly
+      content-stretch
+      content-safe
+      content-unsafe
+      content-inherit
+      content-initial
+      content-unset
+    {
+      $alignContent-index: index($args, $alignContent);
+
+      @if $alignContent-index {
+        $alignContent-value: nth($args, $alignContent-index);
+        @include align-content($alignContent-value, flex);
+      }
+    }
+  }
+}
+
+@mixin flex-c-a($args) {
+  @include flex-container-append($args);
+}
