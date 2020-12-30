@@ -1,6 +1,6 @@
 // @include ellipsis(200px, true);
 
-@mixin ellipsis($width: null, $hover-visible: false) {
+@mixin text-ellipsis($width: em(480), $hover-visible: false) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -10,5 +10,4 @@
       overflow: visible;
     }
   }
-  @content;
 }

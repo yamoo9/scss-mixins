@@ -1,24 +1,70 @@
 //* CSS Text 속성 -------------------------------------------------------------- */
+// 참고: https://www.w3.org/TR/css-text-3
+
 // text-align
+// text-align-last
 // text-indent
 // text-transform
-// text-shadow
-// line-height
+
 // letter-spacing
 // word-spacing
+
+// line-break
+// word-break: keep-all
+
+// overflow-wrap
+
 // white-space
+// tab-size
 
 @mixin text($args) {
-  $props: align indent transform shadow line-height letter-spacing word-spacing
-    white-space;
+  $props: align align-last indent transform letter-spacing ls word-spacing ws
+    line-break lb word-break wb word-wrap ww overflow-wrap ow white-space
+    tab-size ts hyphens;
+
+  // 참고: https://wit.nts-corp.com/2017/07/25/4675
+  //
+  // https://developer.mozilla.org/ko/docs/Web/CSS/word-break
+  word-break: keep-all;
+  // https://developer.mozilla.org/ko/docs/Web/CSS/overflow-wrap
+  // word-wrap과 유사
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
   @each $prop in $props {
     $prop-index: index($args, $prop);
+
     @if $prop-index {
       $value: nth($args, $prop-index + 1);
-      @if $prop == 'align' or $prop == 'indent' or $prop == 'transform' {
-        text-#{$prop}: $value;
+
+      @if $prop == 'letter-spacing' or $prop == 'ls' {
+        letter-spacing: $value;
+      } @else if $prop == 'word-spacing' or $prop == 'ws' {
+        word-spacing: $value;
+      } @else if $prop == 'line-break' or $prop == 'lb' {
+        line-break: $value;
+      } @else if $prop == 'word-break' or $prop == 'wb' {
+        word-break: $value;
+      } @else if
+        $prop ==
+        'word-wrap' or
+        $prop ==
+        'ww' or
+        $prop ==
+        'overflow-wrap' or
+        $prop ==
+        'ow'
+      {
+        word-wrap: $value;
+        overflow-wrap: $value;
+      } @else if $prop == 'hyphens' {
+        hyphens: $value;
+      } @else if $prop == 'white-space' {
+        white-space: $value;
+      } @else if $prop == 'tab-size' or $prop == 'ts' {
+        tab-size: $value;
       } @else {
-        #{$prop}: $value;
+        text-#{$prop}: $value;
       }
     }
   }
