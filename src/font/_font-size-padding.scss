@@ -1,29 +1,32 @@
-@mixin font-size-padding($fz, $p) {
-  // 전달 받은 $p 유형 검사
+@mixin font-size-padding($font-size, $padding) {
+  // 전달 받은 $padding 유형 검사
   $type-collection: list number string;
 
   // 개발자가 요구하는 데이터 유형이 올바르게 전달된 경우 → 처리
-  @if is-valid-types($p, $type-collection) {
-    $p-type: type-of($p);
+  @if is-valid-types($padding, $type-collection) {
+    $padding-type: type-of($padding);
     // 숫자인 경우
-    @if $p-type == 'number' {
-      padding: em($p, $fz);
+    @if $padding-type == 'number' {
+      padding: em($padding, $font-size);
     }
 
     // 문자인 경우
-    @if $p-type == 'string' {
-      padding: $p;
+    @if $padding-type == 'string' {
+      padding: $padding;
     }
 
     // 리스트인 경우
-    @if $p-type == 'list' {
+    @if $padding-type == 'list' {
       // 새롭게 반환할 리스트 정의
       $convert-padding-list: ();
 
-      @each $value in $p {
+      @each $value in $padding {
         // 값이 숫자인 경우 (예: 10px)
         @if type-of($value) == 'number' {
-          $convert-padding-list: append($convert-padding-list, em($value, $fz));
+          $convert-padding-list: append(
+            $convert-padding-list,
+            em($value, $font-size)
+          );
         }
 
         // 값이 문자인 경우 (예: auto)
@@ -37,20 +40,20 @@
   }
   // 개발자가 요구하지 않은 데이터 유형이 전달된 경우 → 오류 표시
   @else {
-    @error '전달 받은 #{$p} 값은 요구되는 #{join($type-collection, [], $separator: comma, $bracketed: true)} 유형이 아닙니다.';
+    @error '전달 받은 #{$padding} 값은 요구되는 #{join($type-collection, [], $separator: comma, $bracketed: true)} 유형이 아닙니다.';
   }
 
   // ----------------------------------------------
 
-  // $fz 전달 인자: 유효성 검사(validation)
-  @if type-of($fz) != 'number' {
-    @error '전달 받은 #{$fz} 값은 숫자 유형이 아닙니다.';
+  // $font-size 전달 인자: 유효성 검사(validation)
+  @if type-of($font-size) != 'number' {
+    @error '전달 받은 #{$font-size} 값은 숫자 유형이 아닙니다.';
   }
-  // $fz 값을 설정
-  font-size: rem($fz);
+  // $font-size 값을 설정
+  font-size: rem($font-size);
 }
 
 // 별칭 믹스인 등록
-@mixin fzp($fz, $p) {
-  @include font-size-padding($fz, $p);
+@mixin fsp($font-size, $padding) {
+  @include font-size-padding($font-size, $padding);
 }
