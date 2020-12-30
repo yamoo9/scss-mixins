@@ -13,7 +13,7 @@ $colors: (
 /// @return {color} 등록된 컬러 이름과 전달된 컬러 이름이 매칭 될 경우 컬러 값 반환
 
 @function get-color($name: null) {
-  @if map-has-key($colors, $name) {
+  @if has-color($name) {
     @return map-get($colors, $name);
   } @else {
     @error '설정 가능한 컬러 값은 #{map-keys($colors)} 중 하나입니다.';
