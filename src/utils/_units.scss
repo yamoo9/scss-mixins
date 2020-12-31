@@ -52,3 +52,27 @@ $base-rem-size: 16px !default;
 @function rem($px, $base: $base-rem-size) {
   @return _px2rem($px, $base);
 }
+
+//* ------------------------------------------------------------------
+
+// 단위 없는 값인 경우, px 값으로 반환
+@function unitless-px($value) {
+  @return if(unitless($value), $value * 1px, $value);
+}
+
+// 전달 받은 값이 숫자인 경우 unitless-px() 함수 결과 값 반환
+// 전달 받은 값이 문자인 경우, 문자 그대로 반환
+@function get-number-or-string($value) {
+  @return if(type-of($value) == 'number', unitless-px($value), $value);
+}
+
+// 키(key) 집합(list)을 순환하여 일치하는 값을 최종 계산하여 반환
+// 예: get-match-value-of-keys(b 30px, bottom b);
+@function get-match-value-of-keys($values, $keys) {
+  $value: null;
+
+  @each $key in $keys {
+    $value: if($value, $value, get-value-after-key($values, $key));
+  }
+  @return $value;
+}
