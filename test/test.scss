@@ -2,6 +2,10 @@
 @import '../index';
 @import '../config';
 
+.usage {
+  @include p(t 20 r 10);
+}
+
 // $im-media-support: false;
 // $im-no-media-breakpoint: 'x-lg';
 
@@ -11,9 +15,6 @@
 @mixin hannna-font($size, $line-height: null, $weight: null) {
   @include font(size $size weight $weight);
   @include text(line-height $line-height);
-  @include media('no-motion') {
-    @include font(size 20px);
-  }
 }
 
 //* -------------------------------------------------------------------------- */
@@ -29,7 +30,7 @@ $easings: ease-merge(
 );
 
 .demo {
-  background: getColor(black);
+  background: get-color(black);
   // @debug last(map-keys($colors));
   transition: all 0.3s ease(out-euid);
 
@@ -66,7 +67,7 @@ $easings: ease-merge(
 }
 
 .text-ellipsis-demo {
-  @include ellipsis(200px);
+  @include text-ellipsis(200px);
 }
 
 @include box-sizing-with-selector(content-box, '.demo');
@@ -111,15 +112,15 @@ $easings: ease-merge(
 
 .mediaDemo {
   @include flex-container(column items-start justify-center);
-  background: getColor(white);
-  color: getColor(black);
+  background: get-color(white);
+  color: get-color(black);
 
   @include media('>lg') {
     flex-direction: row;
   }
 
   @include media('>lg', 'dark-mode') {
-    background: getColor(black);
-    color: getColor(white);
+    background: get-color(black);
+    color: get-color(white);
   }
 }
