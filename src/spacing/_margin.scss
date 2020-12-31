@@ -1,90 +1,80 @@
-@mixin margin($args: 0) {
-  $use-null: false;
+// @include m(20px) → number
+// @include m(t 30 l -20) → list
+// @include m(x 30) → list
+// @include m(y r40) → list
 
-  @if type-of($args) == 'list' {
-    @if type-of(first($args)) == 'string' {
-      @each $dir in top, left, bottom, right {
-        $i: index($args, $dir);
+@mixin margin($args...) {
+  @if length($args) == 0 {
+    @error 'margin() 믹스인은 margin 속성의 설정 방향 top, right, bottom, left와 값을 연이어 전달 받을 수 있습니다. 뿐만 아니라 x, y 방향으로 속성을 일괄 설정 가능합니다.';
+  }
 
-        @if $i {
-          margin-#{$dir}: nth($args, $i + 1);
-        }
+  @each $value in $args {
+    $type: type-of($value);
+
+    @if $type == 'number' or $type == 'string' {
+      margin: get-number-or-string($value);
+    }
+
+    @if $type == 'list' {
+      @if is-include-items($value, top t) {
+        margin-top: get-number-or-string(
+          get-match-value-of-keys($value, top t)
+        );
       }
-    } @else {
-      $l: length($args);
-
-      @for $i from 1 through $l {
-        @if nth($args, $i) == null {
-          $use-null: true;
-        }
+      @if is-include-items($value, right r) {
+        margin-right: get-number-or-string(
+          get-match-value-of-keys($value, right r)
+        );
       }
-
-      @if not $use-null {
-        @if $l == 2 {
-          $t-b: first($args);
-          $r-l: nth($args, 2);
-
-          margin: $t-b $r-l;
-        } @else if $l == 3 {
-          $t: first($args);
-          $r-l: nth($args, 2);
-          $b: nth($args, 3);
-
-          margin: $t $r-l $b;
-        } @else {
-          $t: first($args);
-          $r: nth($args, 2);
-          $b: nth($args, 3);
-          $l: nth($args, 4);
-
-          margin: $t $r $b $l;
-        }
-      } @else {
-        @if $l == 2 {
-          margin-top: first($args);
-          margin-right: nth($args, 2);
-          margin-bottom: first($args);
-          margin-left: nth($args, 2);
-        } @else if $l == 3 {
-          margin-top: first($args);
-          margin-right: nth($args, 2);
-          margin-bottom: nth($args, 3);
-          margin-left: nth($args, 2);
-        } @else {
-          margin-top: first($args);
-          margin-right: nth($args, 2);
-          margin-bottom: nth($args, 3);
-          margin-left: nth($args, 4);
-        }
+      @if is-include-items($value, bottom b) {
+        margin-bottom: get-number-or-string(
+          get-match-value-of-keys($value, bottom b)
+        );
+      }
+      @if is-include-items($value, left l) {
+        margin-left: get-number-or-string(
+          get-match-value-of-keys($value, left l)
+        );
+      }
+      @if is-include-items($value, x) {
+        $x-value: get-value-after-key($value, x);
+        margin-left: get-number-or-string($x-value);
+        margin-right: get-number-or-string($x-value);
+      }
+      @if is-include-items($value, y) {
+        $y-value: get-value-after-key($value, y);
+        margin-top: get-number-or-string($y-value);
+        margin-bottom: get-number-or-string($y-value);
       }
     }
-  } @else {
-    margin: $args;
   }
 }
 
 //* -------------------------------------------------------------------------- */
 
-@mixin m($value) {
-  @include margin($value);
+@mixin m($args: null) {
+  @if not $args {
+    @error 'm() 믹스인은 margin 속성의 설정 방향 top, right, bottom, left와 값을 연이어 전달 받을 수 있습니다. 뿐만 아니라 x, y 방향으로 속성을 일괄 설정 가능합니다.';
+  }
+  @include margin($args);
 }
 
 @mixin mx($value) {
   $value_length: length($value);
   @if $value_length == 1 {
-    @include margin(left $value right $value);
+    @include m(l $value r $value);
   }
-  @if $value_length > 1 {
-    @include margin(left first($value) right last($value));
+  @if $value_length == 2 {
+    @include m(l first($value) r last($value));
   }
 }
 
 @mixin my($value) {
   $value_length: length($value);
   @if $value_length == 1 {
-    @include margin(top $value bottom $value);
+    @include m(t $value b $value);
   }
-  @if $value_length > 1 {
-    @include margin(top first($value) bottom last($value));
+  @if $value_length == 2 {
+    @include m(t first($value) b last($value));
   }
 }
