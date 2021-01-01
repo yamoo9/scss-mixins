@@ -13,8 +13,6 @@ $colors: (
   black: #010101,
   white: #fefefe,
   gray: #787878,
-  // -----------------------
-  // 상태
   state-normal: #707070,
   state-hover: #35a1af,
   state-focus: #1870d4,
@@ -30,8 +28,9 @@ $colors: (
 $using-place-layout: false;
 
 //* --------------------------------------------------------------------------
-// 커스텀 이징 함수 설정
+// 이징 함수 설정
 
+// 커스텀 이징 함수 설정 (확장)
 $easings: ease-merge(
   (
     in-euid: cubic-bezier(0.43, 0.16, 0.7, 0.52),
@@ -44,25 +43,15 @@ $easings: ease-merge(
 // 미디어 쿼리 설정
 // 라이브러리: https://eduardoboucas.github.io/include-media/
 
-// 미디워 퀴리 설정 여부 (기본 값: true)
-$im-media-support: true;
-
-// $im-media-support 값이 false일 경우,
-// 설정된 미디어 쿼리 키워드 이상 스크린 너비는 무시 처리
-$im-no-media-breakpoint: 'x-lg';
-
-// $im-media-support 값이 false일 경우에도
-// 허용할 미디어 식 값을 설정
-// 참고: https://bit.ly/3h75qGw
-$im-no-media-expressions: ('screen');
-
 // 중단점 설계 (import-media 라이브러리 활용) → 임의의 키워드 사용 가능
-// 참고: https://bit.ly/2J9wKYe
+// 참고: https://bit.ly/2J9wKYe / https://bit.ly/34ZeI2q
 $breakpoints: (
-  md: em(768px),
-  lg: em(1024px),
-  x-lg: em(1280px),
-  2x-lg: em(1440px),
+  'sm': em(640),
+  'md': em(768),
+  'lg': em(1024),
+  'xl': em(1280),
+  '2xl': em(1440),
+  '3xl': em(1920),
 );
 
 // 미디어 표현식 설계 (import-media 라이브러리 활용) → 임의의 키워드 사용 가능
@@ -70,10 +59,22 @@ $breakpoints: (
 $media-expressions: (
   'landscape': '(orientation: landscape)',
   'portrait': '(orientation: portrait)',
-  'retina2x':
+  '2x':
     '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx)',
-  'retina3x':
+  '3x':
     '(-webkit-min-device-pixel-ratio: 3), (min-resolution: 350dpi), (min-resolution: 3dppx)',
   'dark-mode': '(prefers-color-scheme: dark)',
   'no-motion': '(prefers-reduced-motion: reduce)',
 );
+
+// 미디워 퀴리 설정 여부 (기본 값: true)
+$im-media-support: true;
+
+// $im-media-support 값이 false일 경우,
+// 설정된 미디어 쿼리 키워드 이상 스크린 너비는 무시 처리
+$im-no-media-breakpoint: 'xl';
+
+// $im-media-support 값이 false일 경우에도
+// 허용할 미디어 식 값을 설정
+// 참고: https://bit.ly/3h75qGw
+$im-no-media-expressions: ('screen');

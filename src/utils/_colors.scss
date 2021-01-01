@@ -1,9 +1,16 @@
 /// 컬러 구성표(Color Scheme)
 
 $colors: (
-  black: #000,
-  white: #fff,
-  gray: #808080,
+  black: #010101,
+  white: #fefefe,
+  gray: #787878,
+  state-normal: #707070,
+  state-hover: #35a1af,
+  state-focus: #1870d4,
+  state-active: #185158,
+  state-disabled: #dedede,
+  state-valid: #219c5e,
+  state-invalid: #e72e6c,
 ) !default;
 
 //* -------------------------------------------------------------------------- */

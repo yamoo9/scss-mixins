@@ -1,3 +1,4 @@
+// 모듈
 @import './src/ui/index';
 @import './src/form/index';
 @import './src/font/index';
@@ -11,3 +12,6 @@
 @import './src/css-grid/index';
 @import './src/include-media/index';
 @import './src/box-alignment/index';
+
+// 구성
+@import './config';
