@@ -1,13 +1,17 @@
-@mixin position($position, $args) {
+@mixin position($position, $args: null) {
   position: $position;
 
   @if $args != null {
-    @each $prop in top, left, bottom, right, z-index {
-      $has-prop: index($args, $prop);
-      @if $has-prop {
-        #{$prop}: get-value-after-key($args, $prop);
-      }
-    }
+    $top-value: get-match-value-of-keys($args, top t);
+    $right-value: get-match-value-of-keys($args, right r);
+    $bottom-value: get-match-value-of-keys($args, bottom b);
+    $left-value: get-match-value-of-keys($args, left l);
+
+    z-index: get-match-value-of-keys($args, z-index z);
+    top: if($top-value, unitless-px($top-value), null);
+    right: if($right-value, unitless-px($right-value), null);
+    bottom: if($bottom-value, unitless-px($bottom-value), null);
+    left: if($left-value, unitless-px($left-value), null);
   }
 }
 
