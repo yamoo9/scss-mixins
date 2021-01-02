@@ -1,0 +1,53 @@
+@mixin initialize($generate-class: false) {
+  @include normalize();
+  @include reset-box-sizing();
+
+  // 참고: https://sass-lang.com/documentation/modules/meta#global-variable-exists
+  @if global-variable-exists('base-rem-size') {
+    html {
+      font-size: $base-rem-size;
+    }
+  }
+
+  img {
+    @include reset-img;
+  }
+
+  button {
+    @include reset-button;
+  }
+
+  abbr[title] {
+    @include reset-abbr;
+  }
+
+  @if $generate-class {
+    .resetBox {
+      @include reset-box;
+    }
+
+    .resetLink {
+      @include reset-link;
+    }
+
+    .restList {
+      @include reset-list;
+    }
+
+    .resetDl {
+      @include reset-dl;
+    }
+
+    .rwdImg {
+      @include rwd-img();
+    }
+
+    .rwdVideo {
+      @include rwd-video();
+    }
+
+    .rwdIframeWrapper {
+      @include rwd-iframe-wrapper();
+    }
+  }
+}

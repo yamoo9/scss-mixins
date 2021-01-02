@@ -1,4 +1,4 @@
-@mixin inherit-pseudo-content($prop) {
+@mixin inherit-pseudo-elements($prop) {
   &::before,
   &::after {
     #{$prop}: inherit;

@@ -1,0 +1,25 @@
+@mixin rwd-iframe-wrapper($ratio: 16 9) {
+  @if length($ratio) != 2 {
+    @error 'rwd-iframe-wrapper() 믹스인은 영상의 너비, 높이 비율 값을 연속된 숫자 값 리스트로 전달 받습니다. → 예) @include rwd-iframe-wrapper(4 3);';
+  }
+
+  $ratio-first: first($ratio);
+  $ratio-last: last($ratio);
+
+  $min-ratio: min($ratio-first, $ratio-last);
+  $max-ratio: max($ratio-first, $ratio-last);
+
+  $aspect-ratio: $min-ratio / $max-ratio;
+
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: percentage($aspect-ratio);
+
+  iframe {
+    @include absolute(t 0 l 0);
+    width: 100%;
+    height: 100%;
+  }
+}

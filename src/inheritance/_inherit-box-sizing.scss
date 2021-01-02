@@ -1,0 +1,12 @@
+@mixin inherit-box-sizing($selector: null, $value: border-box) {
+  @if $selector != null {
+    #{$selector} {
+      box-sizing: $value;
+      @include inherit-pseudo-elements(box-sizing);
+      * {
+        box-sizing: inherit;
+        @include inherit-pseudo-elements(box-sizing);
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@mixin rwd-img($limit-origin-size: true, $ratio-prop: width) {
+  $prop: if($limit-origin-size, max-#{$ratio-prop}, #{$ratio-prop});
+  $cross-prop: if($ratio-prop == 'width', 'height', 'width');
+  #{$prop}: 100%;
+  #{$cross-prop}: auto;
+}

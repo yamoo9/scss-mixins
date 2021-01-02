@@ -1,0 +1,5 @@
+@mixin reset-list() {
+  @include my(0);
+  padding-left: 0;
+  list-style-type: none;
+}
