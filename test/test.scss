@@ -1,8 +1,5 @@
-// 프로젝트 구성(config) 파일
 @import '../index';
 
-@include initialize(true);
+//* -------------------------------------------------------------------------- */
 
-.f {
-  @include rwd-iframe-wrapper(8 5);
-}
+@include initialize(true);
