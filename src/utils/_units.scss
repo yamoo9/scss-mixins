@@ -57,7 +57,7 @@ $base-rem-size: 16px !default;
 
 // 단위 없는 값인 경우, px 값으로 반환
 @function unitless-px($value) {
-  @return if(unitless($value), $value * 1px, $value);
+  @return if(unitless($value), if($value != 0, $value * 1px, $value), $value);
 }
 
 // 전달 받은 값이 숫자인 경우 unitless-px() 함수 결과 값 반환
