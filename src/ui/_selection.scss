@@ -1,5 +1,5 @@
-@mixin selection($args...) {
-  @if length($args) == 0 {
+@mixin selection($selector: null) {
+  @if $selector == null {
     ::-moz-selection {
       @content;
     }
@@ -7,7 +7,7 @@
       @content;
     }
   } @else {
-    @each $selector in $args {
+    @each $selector in str-split($selector, ',') {
       #{$selector}::-moz-selection {
         @content;
       }

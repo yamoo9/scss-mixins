@@ -16,3 +16,17 @@
   // 최종 변경된 문자 값을 반환
   @return $string;
 }
+
+@function str-split($string, $separator: ',') {
+  $split-list: ();
+  $index: str-index($string, $separator);
+
+  @while $index != null {
+    $item: str-slice($string, 1, $index - 1);
+    $split-list: append($split-list, $item);
+    $string: str-slice($string, $index + 1);
+    $index: str-index($string, $separator);
+  }
+
+  @return append($split-list, $string);
+}
