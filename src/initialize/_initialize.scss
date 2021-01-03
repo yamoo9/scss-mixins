@@ -49,5 +49,9 @@
     .rwdIframeWrapper {
       @include rwd-iframe-wrapper();
     }
+
+    .a11yHidden {
+      @include a11y-hidden();
+    }
   }
 }
