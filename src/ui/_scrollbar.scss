@@ -1,0 +1,46 @@
+@use 'sass:color';
+
+@mixin scrollbar(
+  $size: 10px,
+  $thumb-color: get-color(black),
+  $thumb-radius: 3px,
+  $bar-color:
+    mix(
+      $thumb-color,
+      if(
+        color.blackness($thumb-color) >= 50%,
+        get-color(white),
+        get-color(black)
+      ),
+      45%
+    )
+) {
+  // IE
+  & {
+    scrollbar-face-color: $thumb-color;
+    scrollbar-track-color: $bar-color;
+  }
+
+  // Firefox
+  // 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scrollbars
+  & {
+    scrollbar-width: thin;
+    scrollbar-color: $thumb-color $bar-color;
+  }
+
+  // Webkit, Blick
+  // 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-scrollbar
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $thumb-radius;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $bar-color;
+  }
+}
