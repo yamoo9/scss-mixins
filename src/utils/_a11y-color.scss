@@ -1,11 +1,11 @@
+$white: alt-color(get-color(white), #fefefe) !default;
+$black: alt-color(get-color(black), #010101) !default;
+
 //* ----------------------------------------------------------------------------------- */
 // 출처: https://css-tricks.com/programming-sass-to-create-accessible-color-combinations
 //* ----------------------------------------------------------------------------------- */
 
-$white: #fff !default;
-$black: #101010 !default;
-
-// From https://github.com/material-components/material-components-web/blob/master/packages/mdc-theme/_constants.scss
+// 참고: https://github.com/material-components/material-components-web/blob/master/packages/mdc-theme/_constants.scss
 //
 // Copyright 2017 Google Inc.
 //
@@ -28,16 +28,16 @@ $black: #101010 !default;
 // THE SOFTWARE.
 //
 
-// Precomputed linear color channel values, for use in contrast calculations.
-// See https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+// 대비 차 계산에 필요한 미리 계산된 선형 색상 채널(linear channel) 값입니다.
+// 참고: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
 //
-// Algorithm, for c in 0 to 255:
+// 알고리즘: 0에서 255까지 c의 경우
 // f(c) {
 //   c = c / 255;
 //   return c < 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
 // }
 //
-// This lookup table is needed since there is no `pow` in SASS.
+// 이 룩업 테이블은 SASS에 수학 pow() 함수가 없기 때문에 필요합니다.
 $linear-channel-values: 0 0.0003035269835488375 0.000607053967097675
   0.0009105809506465125 0.00121410793419535 0.0015176349177441874
   0.001821161901293025 0.0021246888848418626 0.0024282158683907
@@ -113,17 +113,16 @@ $linear-channel-values: 0 0.0003035269835488375 0.000607053967097675
 
 // luminance($color)
 // @requires $linear-channel-values [list]
-// Helper: Calculate Luminance of a single color
-// Adapted from: https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
-// White luminance is 1, Black luminance is 0
-// To be used in other functions or mixins — creates non-standard CSS output:
-// Usage:
+// 설명: 단일 색상의 휘도(Luminance) 계산
+// 참고: https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
+// 흰색 휘도는 1, 검정색 휘도는 0, 함수 또는 믹스 인에서 사용하기 위해 결과 값을 반환
+// 사용법:
 // .sample { luminance: luminance(#c00); }
-// Output:
+// 출력 결과:
 // .sample { luminance: 0.1283736922; }
 //
 @function luminance($color) {
-  // $linear-channel-values are our Lookup Table of constants
+  // $linear-channel-values는 상수 룩업 테이블입니다.
   $red: nth($linear-channel-values, red($color) + 1);
   $green: nth($linear-channel-values, green($color) + 1);
   $blue: nth($linear-channel-values, blue($color) + 1);
@@ -132,13 +131,13 @@ $linear-channel-values: 0 0.0003035269835488375 0.000607053967097675
 }
 
 // color-contrast($fg, $bg)
-// Helper: Calculate "readability" as defined by WCAG 2.1
-// Adapted from: https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
-// Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
-// To be used in other functions or mixins — creates non-standard CSS output:
-// Usage:
+// 설명: WCAG 2.1에 정의된 "가독성(readability)"을 계산합니다.
+// 참고: https://github.com/LeaVerou/contrast-ratio/blob/gh-pages/color.js
+// 공식: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
+// 함수 또는 믹스 인에서 사용하기 위해 결과 값을 반환
+// 사용법:
 // .sample { color-contrast: color-contrast(#c00, #fff); }
-// Output:
+// 출력 결과:
 // .sample { color-contrast: 5.89; }
 //
 @function color-contrast($fg, $bg) {
@@ -148,17 +147,17 @@ $linear-channel-values: 0 0.0003035269835488375 0.000607053967097675
   @if $luminance2 > $luminance1 {
     $ratio: 1 / $ratio;
   }
-  // Round to a hundreth because 6.96 should not pass a ratio of 7.0
+  // 6.96은 7.0 비율을 통과하지 않아야하기 때문에 hundreth(소수점 이하의 2자리)로 반올림
   $ratio: round($ratio * 100) / 100;
   @return $ratio;
 }
 
 // validate-font-size($size)
-// Helper: Depending on the unit recalculate a font size value into pixels if possible
-// To be used in other functions or mixins — creates non-standard CSS output:
-// Usage:
+// 설명: 단위에 따라 가능한 경우 글꼴 크기 값을 픽셀로 다시 계산
+// 함수 또는 믹스 인에서 사용하기 위해 결과 값을 반환
+// 사용법:
 // .sample { validate-font-size: validate-font-size(1em); }
-// Output:
+// 출력 결과:
 // .sample { validate-font-size: 16; }
 //
 @function validate-font-size($size) {
@@ -171,47 +170,49 @@ $linear-channel-values: 0 0.0003035269835488375 0.000607053967097675
     unit($size) ==
     ''
   {
-    // Check if a flexible unit
+    // 유연한 단위인 경우
     @if unit($size) == 'em' or unit($size) == 'rem' {
-      // Need to convert to a pixel value. Let's not overcomplicate it with possible EM inheritence scale factors
+      // 유연한 값을 픽셀 값으로 변환
       @return remove-unit($size * 16);
     }
+    // 픽셀 값인 경우
     @if unit($size) == 'px' {
-      // We expect PX, so strip the value and return it
+      // PX를 기대하므로 단위를 제거한 후 반환
       @return remove-unit($size);
     }
+    // 단위가 없는 경우
     @if unit($size) == '' {
+      // 값을 그대로 반환
       @return $size;
     }
   } @else {
-    @error 'validate-font-size(): 예상치 못한 글꼴 크기 단위가 제공되었습니다.';
+    @error '오류! validate-font-size(): 예상치 못한 글꼴 크기 단위가 제공되었습니다.';
   }
 }
 
 // get-ratio($level: 'AA', $size: 16, $bold: false)
-// Helper: Determine the correct ratio value to use based on font-size and WCAG Level
-// To be used in other functions or mixins — creates non-standard CSS output:
-// Usage:
+// 설명: 글꼴 크기 및 WCAG 수준에 따라 사용할 올바른 비율 값 결정
+// 함수 또는 믹스 인에서 사용하기 위해 결과 값을 반환
+// 사용법:
 // .sample { get-ratio: get-ratio('AAA', 19, true); }
-// Output:
+// 출력 결과:
 // .sample { get-ratio: 4.5; }
 //
 @function get-ratio($level: 'AA', $size: 16, $bold: false) {
-  // Default ratio
+  // 기본 비율
   $ratio: 4.5;
   @if $level == 'AAA' {
     $ratio: 7;
   }
 
-  // Make sure the size is valid. If the value is not EM, REM, or PX (preferred), we can't help
+  // 크기가 유효한지 확인: 값이 em, rem 또는 px(권장) 값이 아닌 경우 오류를 발생
   $size: validate-font-size($size);
 
-  // Check font size
+  // 글자 크기 확인
   @if $size < 24 {
-    // Small text, use defaults
-    // But:
+    // 작은 텍스트(기본값 사용)가 아닌 경우
     @if $size >= 19 and $bold == true {
-      // Special case: Small text but also bold
+      // 특별한 경우 : 작은 텍스트이지만 굵은 글씨
       @if $level == 'AAA' {
         $ratio: 4.5;
       } @else {
@@ -219,7 +220,7 @@ $linear-channel-values: 0 0.0003035269835488375 0.000607053967097675
       }
     }
   } @else {
-    // Larger than 24
+    // 24px 보다 큰 경우
     $ratio: 3;
     @if $level == 'AAA' {
       $ratio: 4.5;
@@ -229,12 +230,12 @@ $linear-channel-values: 0 0.0003035269835488375 0.000607053967097675
 }
 
 // light-or-dark($color)
-// Helper: Use contrast against white or black to determine if a color is "light" or "dark"
-// Adapted from: https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
-// To be used in other functions or mixins — creates non-standard CSS output:
-// Usage:
+// 설명: 흰색 또는 검정색 대비를 사용하여 색상이 "밝음" 또는 "어두움" 인지 확인
+// 참고: https://medium.com/dev-channel/using-sass-to-automatically-pick-text-colors-4ba7645d2796
+// 함수 또는 믹스 인에서 사용하기 위해 결과 값을 반환
+// 사용법:
 // .sample { light-or-dark: light-or-dark(#c00); }
-// Output:
+// 출력 결과:
 // .sample { light-or-dark: "light"; }
 //
 @function light-or-dark($color) {
@@ -242,21 +243,22 @@ $linear-channel-values: 0 0.0003035269835488375 0.000607053967097675
   $dark-contrast: color-contrast($color, $black);
 
   @if $light-contrast > $dark-contrast {
-    // Contrast against white is higher than against black, so, this is a dark color
+    // 흰색 대비가 검은 색보다 높기 때문에 "어두움"을 반환
     @return 'dark';
   } @else {
+    // 반대일 경우 "밝음" 반환
     @return 'light';
   }
 }
 
 // most-legible-color($color)
-// Helper: 어떤 경우에는 색상 위에 흑백 텍스트를 사용하고 싶을 때가 있습니다.
-// Usage:
+// 설명: 특별한 상황에서는 특정 배경 색상 위에 검정 또는 하얀색 텍스트를 사용하고 싶을 경우가 있음
+// 사용법:
 // .sample {
 //   background-color: #c00;
 //   color: most-legible-color(#c00);
 // }
-// Output:
+// 출력 결과:
 // .sample {
 //   background-color: #c00;
 //   color: #fff;
@@ -272,62 +274,66 @@ $linear-channel-values: 0 0.0003035269835488375 0.000607053967097675
 }
 
 // a11y-color($fg, $bg, $level: 'AA', $size: 16, $bold: false)
-// Goal: Return a color that passes for the chosen WCAG level without changing the Hue of the color
-// Usage:
+// 목표: 전달된 색상의 색조를 변경하지 않고, WCAG 2.1 수준을 통과하는 색상을 계산하여 반환
+// 사용법:
 // .sample {
 //   background-color: #000;
 //   color: a11y-color(#c0c, #000);
 // }
-// Output:
+// 출력 결과:
 // .sample {
 //   background-color: #000;
 //   color: #d200d2;
 // }
 //
 @function a11y-color($fg, $bg, $level: 'AA', $size: 16, $bold: false) {
-  // Helper: make sure the font size value is acceptable
+  // 글자 크기 값이 허용 가능한 지 확인
   $font-size: validate-font-size($size);
-  // Helper: With the level, font size, and bold boolean, return the proper target ratio. 3.0, 4.5, or 7.0 expected
+  // 검사 수준, 글자 크기 및 글자 두께 등을 확인하여 적절한 비율을 반환 (3.0, 4.5 또는 7.0)
   $ratio: get-ratio($level, $font-size, $bold);
-  // Calculate the first contrast ratio of the given pair
+  // 주어진 전경, 배경색의 원본 대비 차를 계산
   $original-contrast: color-contrast($fg, $bg);
 
+  // 원본 대비 차가 기준 비율보다 크거나 같은 경우
   @if $original-contrast >= $ratio {
-    // If we pass the ratio already, return the original color
+    // 원본 전경색을 반환
     @return $fg;
-  } @else {
-    // Doesn't pass. Time to get to work
-    // Should the color be lightened or darkened?
+  }
+
+  // 그렇지 않을 경우
+  @else {
+    // 전경색의 밝기 모드를 확인
     $fg-lod: light-or-dark($fg);
+    // 배경색의 밝기 모드를 확인
     $bg-lod: light-or-dark($bg);
 
-    // Set a "step" value to lighten or darken a color
-    // Note: Higher percentage steps means faster compile time, but we might overstep the required threshold too far with something higher than 5%
+    // "단계" 값을 설정하여 색상을 밝게 또는 어둡게 처리
+    // 노트: 백분율 단계가 높을수록 컴파일 시간이 더 빨라지지만, 5%보다 큰 값으로 필요한 임계 값을 너무 초과 할 수 있음
     $step: 2%;
 
-    // Run through some cases where we want to darken, or use a negative step value
     @if $fg-lod == 'light' and $bg-lod == 'light' {
-      // Both are light colors, darken the fg
+      // 둘 다 밝은 색상인 경우 fg를 어둡게
       $step: -$step;
     } @else if $fg-lod == 'dark' and $bg-lod == 'light' {
-      // bg is light, fg is dark but does not pass, darken more
+      // bg는 밝고, fg는 어둡지만 통과하지 않으므로 더 어둡게
       $step: -$step;
     }
-    // Keeping the rest of the logic here, but our default values do not change, so this logic is not needed
-    //@else if $fg-lod == 'light' and $bg-lod == 'dark' {
-    //  // bg is dark, fg is light but does not pass, lighten further
+    // 노트: 나머지 로직은 여기에 유지하지만, 기본 값은 변경되지 않으므로 이 로직은 필요하지 않음
+    // @else if $fg-lod == 'light' and $bg-lod == 'dark' {
+    //  // bg는 어둡고 fg는 밝지만 통과하지 않으므로 더 밝게
     //  $step: $step;
-    //} @else if $fg-lod == 'dark' and $bg-lod == 'dark' {
-    //  // Both are dark, so lighten the fg
+    // } @else if $fg-lod == 'dark' and $bg-lod == 'dark' {
+    //  // 둘 다 어둡기 때문에 fg를 밝게
     //  $step: $step;
-    //}
+    // }
 
-    // The magic happens here
-    // Loop through with a @while statement until the color combination passes our required ratio. Scale the color by our step value until the expression is false
-    // This might loop 100 times or more depending on the colors
+    // 색상 조합이 필요한 비율을 통과 할 때까지 @while 문으로 반복
     @while color-contrast($fg, $bg) < $ratio {
+      // 표현식이 거짓이 될 때까지 단계 값으로 색상 조정. 색상에 따라 100번 이상 반복 될 수 있음.
       $fg: scale-color($fg, $lightness: $step, $saturation: $step/2);
     }
+
+    // 계산된 $fg 반환
     @return $fg;
   }
 }
