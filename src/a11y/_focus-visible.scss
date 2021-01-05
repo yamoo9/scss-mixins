@@ -1,16 +1,24 @@
-//* 포커스 적용한 경우 */
-@mixin focus-visible($selector: '') {
-  #{$selector}:focus {
+@mixin focus-visible(
+  $color: rgba(get-color(state-focus), 0.7),
+  $thickness: 3px
+) {
+  //* 포커스 적용한 경우 */
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 $thickness $color;
     @content;
   }
 
   //* 마우스로 클릭했을 때 */
-  #{$selector}:focus:not(:focus-visible) {
+  &:focus:not(:focus-visible) {
     outline: none;
     box-shadow: none;
   }
+
   //* 키보드로 포커싱 되어 화면에 표시 되어야 하는 경우 */
-  #{$selector}:focus-visible {
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 $thickness $color;
     @content;
   }
 }
