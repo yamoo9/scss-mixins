@@ -1,6 +1,6 @@
 {
   "name": "@euid/scss-mixins",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "SCSS 믹스인 라이브러리 → 이듬(E.UID) 블렌디드 러닝 학습용",
   "private": false,
   "publishConfig": {
