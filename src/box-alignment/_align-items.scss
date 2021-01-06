@@ -1,46 +1,46 @@
 // 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/align-items
 
 @mixin align-items($value, $mode: grid) {
-  @if $value == 'items-normal' {
+  @if $value == 'normal' {
     align-items: normal;
   }
-  @if $value == 'items-stretch' {
+  @if $value == 'stretch' {
     align-items: stretch;
   }
 
-  @if $value == 'items-start' {
+  @if $value == 'start' {
     align-items: if($mode == grid, start, flex-start);
   }
-  @if $value == 'items-end' {
+  @if $value == 'end' {
     align-items: if($mode == grid, end, flex-end);
   }
-  @if $value == 'items-center' {
+  @if $value == 'center' {
     align-items: center;
   }
 
-  @if $value == 'items-baseline' {
+  @if $value == 'baseline' {
     align-items: baseline;
   }
-  @if $value == 'items-first-baseline' {
+  @if $value == 'first-baseline' {
     align-items: first baseline;
   }
-  @if $value == 'items-last-baseline' {
+  @if $value == 'last-baseline' {
     align-items: last baseline;
   }
-  @if $value == 'items-safe' {
+  @if $value == 'safe' {
     align-items: safe center;
   }
-  @if $value == 'items-unsafe' {
+  @if $value == 'unsafe' {
     align-items: unsafe center;
   }
 
-  @if $value == 'items-inherit' {
+  @if $value == 'inherit' {
     align-items: inherit;
   }
-  @if $value == 'items-initial' {
+  @if $value == 'initial' {
     align-items: initial;
   }
-  @if $value == 'items-unset' {
+  @if $value == 'unset' {
     align-items: unset;
   }
 }

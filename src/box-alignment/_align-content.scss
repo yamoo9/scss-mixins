@@ -1,63 +1,63 @@
 // 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/align-content
 
 @mixin align-content($value, $mode: grid) {
-  @if $value == 'content-start' {
+  @if $value == 'start' {
     align-content: if($mode == grid, start, flex-start);
   }
-  @if $value == 'content-end' {
+  @if $value == 'end' {
     align-content: if($mode == grid, end, flex-end);
   }
-  @if $value == 'content-center' {
+  @if $value == 'center' {
     align-content: center;
   }
-  @if $value == 'content-left' {
+  @if $value == 'left' {
     align-content: left;
   }
-  @if $value == 'content-right' {
+  @if $value == 'right' {
     align-content: right;
   }
 
-  @if $value == 'content-normal' {
+  @if $value == 'normal' {
     align-content: normal;
   }
 
-  @if $value == 'content-baseline' {
+  @if $value == 'baseline' {
     align-content: baseline;
   }
-  @if $value == 'content-first-baseline' {
+  @if $value == 'first-baseline' {
     align-content: first baseline;
   }
-  @if $value == 'content-last-baseline' {
+  @if $value == 'last-baseline' {
     align-content: last baseline;
   }
 
-  @if $value == 'content-between' {
+  @if $value == 'between' {
     align-content: space-between;
   }
-  @if $value == 'content-around' {
+  @if $value == 'around' {
     align-content: space-around;
   }
-  @if $value == 'content-evenly' {
+  @if $value == 'evenly' {
     align-content: space-evenly;
   }
-  @if $value == 'content-stretch' {
+  @if $value == 'stretch' {
     align-content: stretch;
   }
 
-  @if $value == 'content-safe' {
+  @if $value == 'safe' {
     align-content: safe center;
   }
-  @if $value == 'content-unsafe' {
+  @if $value == 'unsafe' {
     align-content: unsafe center;
   }
 
-  @if $value == 'content-inherit' {
+  @if $value == 'inherit' {
     align-content: inherit;
   }
-  @if $value == 'content-initial' {
+  @if $value == 'initial' {
     align-content: initial;
   }
-  @if $value == 'content-unset' {
+  @if $value == 'unset' {
     align-content: unset;
   }
 }

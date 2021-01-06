@@ -1,53 +1,53 @@
 // 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content
 
 @mixin justify-content($value, $mode: grid) {
-  @if $value == 'justify-start' {
+  @if $value == 'start' {
     justify-content: if($mode == grid, start, flex-start);
   }
-  @if $value == 'justify-end' {
+  @if $value == 'end' {
     justify-content: if($mode == grid, end, flex-end);
   }
-  @if $value == 'justify-center' {
+  @if $value == 'center' {
     justify-content: center;
   }
-  @if $value == 'justify-left' {
+  @if $value == 'left' {
     justify-content: left;
   }
-  @if $value == 'justify-right' {
+  @if $value == 'right' {
     justify-content: right;
   }
 
-  @if $value == 'justify-normal' {
+  @if $value == 'normal' {
     justify-content: normal;
   }
 
-  @if $value == 'justify-between' {
+  @if $value == 'between' {
     justify-content: space-between;
   }
-  @if $value == 'justify-around' {
+  @if $value == 'around' {
     justify-content: space-around;
   }
-  @if $value == 'justify-evenly' {
+  @if $value == 'evenly' {
     justify-content: space-evenly;
   }
-  @if $value == 'justify-stretch' {
+  @if $value == 'stretch' {
     justify-content: stretch;
   }
 
-  @if $value == 'justify-safe' {
+  @if $value == 'safe' {
     justify-content: safe center;
   }
-  @if $value == 'justify-unsafe' {
+  @if $value == 'unsafe' {
     justify-content: unsafe center;
   }
 
-  @if $value == 'justify-inherit' {
+  @if $value == 'inherit' {
     justify-content: inherit;
   }
-  @if $value == 'justify-initial' {
+  @if $value == 'initial' {
     justify-content: initial;
   }
-  @if $value == 'justify-unset' {
+  @if $value == 'unset' {
     justify-content: unset;
   }
 }

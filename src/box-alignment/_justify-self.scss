@@ -1,56 +1,56 @@
 // 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/justify-self
 
 @mixin justify-self($value, $mode: grid) {
-  @if $value == 'self-auto' {
+  @if $value == 'auto' {
     justify-self: auto;
   }
-  @if $value == 'self-normal' {
+  @if $value == 'normal' {
     justify-self: normal;
   }
-  @if $value == 'self-stretch' {
+  @if $value == 'stretch' {
     justify-self: stretch;
   }
 
-  @if $value == 'self-start' {
+  @if $value == 'start' {
     justify-self: if($mode == grid, start, flex-start);
   }
-  @if $value == 'self-end' {
+  @if $value == 'end' {
     justify-self: if($mode == grid, end, flex-end);
   }
-  @if $value == 'self-center' {
+  @if $value == 'center' {
     justify-self: center;
   }
-  @if $value == 'self-left' {
+  @if $value == 'left' {
     justify-self: left;
   }
-  @if $value == 'self-right' {
+  @if $value == 'right' {
     justify-self: right;
   }
 
-  @if $value == 'self-baseline' {
+  @if $value == 'baseline' {
     justify-self: baseline;
   }
-  @if $value == 'self-first-baseline' {
+  @if $value == 'first-baseline' {
     justify-self: first baseline;
   }
-  @if $value == 'self-last-baseline' {
+  @if $value == 'last-baseline' {
     justify-self: last baseline;
   }
 
-  @if $value == 'self-safe' {
+  @if $value == 'safe' {
     justify-self: safe center;
   }
-  @if $value == 'self-unsafe' {
+  @if $value == 'unsafe' {
     justify-self: unsafe center;
   }
 
-  @if $value == 'self-inherit' {
+  @if $value == 'inherit' {
     justify-self: inherit;
   }
-  @if $value == 'self-initial' {
+  @if $value == 'initial' {
     justify-self: initial;
   }
-  @if $value == 'self-unset' {
+  @if $value == 'unset' {
     justify-self: unset;
   }
 }

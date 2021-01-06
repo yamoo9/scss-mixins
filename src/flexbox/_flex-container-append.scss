@@ -41,7 +41,10 @@
       $justifyContent-index: index($args, $justifyContent);
 
       @if $justifyContent-index {
-        $justifyContent-value: nth($args, $justifyContent-index);
+        $justifyContent-value: str-repace(
+          nth($args, $justifyContent-index),
+          'justify-'
+        );
         @include justify-content($justifyContent-value, flex);
       }
     }
@@ -65,7 +68,7 @@
       $alignItems-index: index($args, $alignItems);
 
       @if $alignItems-index {
-        $alignItems-value: nth($args, $alignItems-index);
+        $alignItems-value: str-replace(nth($args, $alignItems-index), 'items-');
         @include align-items($alignItems-value, flex);
       }
     }
@@ -94,7 +97,10 @@
       $alignContent-index: index($args, $alignContent);
 
       @if $alignContent-index {
-        $alignContent-value: nth($args, $alignContent-index);
+        $alignContent-value: str-replace(
+          nth($args, $alignContent-index),
+          'content-'
+        );
         @include align-content($alignContent-value, flex);
       }
     }

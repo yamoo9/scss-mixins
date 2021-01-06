@@ -8,3 +8,7 @@ $using-place-layout: false !default;
     place-#{$type}: $align $justify;
   }
 }
+
+@mixin place($type, $justify, $align) {
+  @include box-alignment($type, $justify, $align);
+}

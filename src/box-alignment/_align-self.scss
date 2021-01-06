@@ -1,51 +1,51 @@
 // 참고: https://developer.mozilla.org/en-US/docs/Web/CSS/align-self
 
 @mixin align-self($value, $mode: grid) {
-  @if $value == 'self-auto' {
+  @if $value == 'auto' {
     align-self: auto;
   }
 
-  @if $value == 'self-normal' {
+  @if $value == 'normal' {
     align-self: normal;
   }
 
-  @if $value == 'self-start' {
+  @if $value == 'start' {
     align-self: if($mode == grid, start, flex-start);
   }
-  @if $value == 'self-end' {
+  @if $value == 'end' {
     align-self: if($mode == grid, end, flex-end);
   }
-  @if $value == 'self-center' {
+  @if $value == 'center' {
     align-self: center;
   }
-  @if $value == 'self-stretch' {
+  @if $value == 'stretch' {
     align-self: stretch;
   }
 
-  @if $value == 'self-baseline' {
+  @if $value == 'baseline' {
     align-self: baseline;
   }
-  @if $value == 'self-first-baseline' {
+  @if $value == 'first-baseline' {
     align-self: first baseline;
   }
-  @if $value == 'self-last-baseline' {
+  @if $value == 'last-baseline' {
     align-self: last baseline;
   }
 
-  @if $value == 'self-safe' {
+  @if $value == 'safe' {
     align-self: safe center;
   }
-  @if $value == 'self-unsafe' {
+  @if $value == 'unsafe' {
     align-self: unsafe center;
   }
 
-  @if $value == 'self-inherit' {
+  @if $value == 'inherit' {
     align-self: inherit;
   }
-  @if $value == 'self-initial' {
+  @if $value == 'initial' {
     align-self: initial;
   }
-  @if $value == 'self-unset' {
+  @if $value == 'unset' {
     align-self: unset;
   }
 }
