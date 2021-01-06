@@ -1,5 +1,5 @@
 @mixin focus-visible(
-  $color: rgba(get-color(state-focus), 0.7),
+  $color: rgba(alt-color(state-focus, #1870d4), 0.7),
   $thickness: 3px
 ) {
   //* 포커스 적용한 경우 */
