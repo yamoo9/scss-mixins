@@ -14,3 +14,11 @@
 @mixin flex-c($args, $mode: flex) {
   @include flex-container($args, $mode);
 }
+
+@mixin inline-flex-container($args) {
+  @include flex-c($args, inline-flex);
+}
+
+@mixin inline-flex-c($args) {
+  @include inline-flex-container($args);
+}
