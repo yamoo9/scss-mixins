@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 @function str-replace($string, $search, $replace: '') {
   // 전달 받은 문자 값에서 검색된 문자 값의 인덱스 반환
   $index: str-index($string, $search);
@@ -29,4 +31,51 @@
   }
 
   @return append($split-list, $string);
+}
+
+@function str-repeat($count: null, $text: null) {
+  // 전달 인자 유효성 검사
+  @if type-of($count) != 'number' {
+    @error 'str-repeat() 믹스인은 첫번째 인자로 숫자 값만 전달 받을 수 있습니다.';
+  }
+  @if type-of($text) != 'string' {
+    @error 'str-repeat() 믹스인은 두번째 인자로 문자 값만 전달 받을 수 있습니다.';
+  }
+
+  // 반복 텍스트 변수
+  $repeat-text: '';
+
+  // 반복 횟수만큼 문자 반복 접합 처리
+  @for $i from 1 through $count {
+    $repeat-text: str-insert($repeat-text, '#{$text} ', 1);
+  }
+
+  // 끝 공백 제거
+  @return str-slice($repeat-text, 1, -2);
+}
+
+@function str-to-num($str-number, $max-number: 100) {
+  $numbers: ();
+
+  @for $n from 1 through $max-number {
+    $numbers: map.set($numbers, $n + '', $n);
+  }
+
+  @if map.has-key($numbers, $str-number) {
+    @return map.get($numbers, $str-number);
+  } @else {
+    @error 'str-to-num() 함수는 #{$max-number} 이하의 숫자형 문자 값만 처리 가능합니다.';
+  }
+}
+
+@function str-extract-count-keyword($text: null) {
+  $index: str-index($text, 'x');
+
+  @if $index {
+    $keyword: str-replace(str-slice($text, 1, $index - 1), ' ');
+    $count: str-slice($text, $index + 1);
+    @return (count: str-to-num($count), keyword: $keyword);
+  } @else {
+    @return $text;
+  }
 }
