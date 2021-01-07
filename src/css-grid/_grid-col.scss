@@ -32,12 +32,12 @@
   grid-column-end: $value;
 }
 
-// @include col(span, 2);
-// @include col(start, 3);
-// @include col(end, 5);
-// @include col(start-end, 3 5);
+// @include grid-col(span, 2);
+// @include grid-col(start, 3);
+// @include grid-col(end, 5);
+// @include grid-col(start-end, 3 5);
 
-@mixin col($type, $value: null) {
+@mixin grid-col($type, $value: null) {
   @if $type == 'span' {
     @include col-span($value);
   }

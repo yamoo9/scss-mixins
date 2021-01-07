@@ -1,0 +1,47 @@
+// @include grid-container(2, 3, rem(20px), rows fr, justify-center items-center, 'header' 'footer');
+
+@mixin grid-container(
+  $rows: null,
+  $cols: null,
+  $gap: null,
+  $auto: null,
+  $align: null,
+  $areas: null
+) {
+  display: grid;
+  @include grid-container-append($rows, $cols, $gap, $auto, $align, $areas);
+}
+
+@mixin grid-c(
+  $rows: null,
+  $cols: null,
+  $gap: null,
+  $auto: null,
+  $align: null,
+  $areas: null
+) {
+  @include grid-container($rows, $cols, $gap, $auto, $align, $areas);
+}
+
+@mixin inline-grid-container(
+  $rows: null,
+  $cols: null,
+  $gap: null,
+  $auto: null,
+  $align: null,
+  $areas: null
+) {
+  display: inline-grid;
+  @include grid-container-append($rows, $cols, $gap, $auto, $align, $areas);
+}
+
+@mixin inline-grid-c(
+  $rows: null,
+  $cols: null,
+  $gap: null,
+  $auto: null,
+  $align: null,
+  $areas: null
+) {
+  @include inline-grid-container($rows, $cols, $gap, $auto, $align, $areas);
+}

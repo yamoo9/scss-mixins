@@ -1,0 +1,47 @@
+@mixin grid-area($rows: null, $cols: null) {
+  $rows-type: type-of($rows);
+  $cols-type: type-of($cols);
+
+  @if $rows-type == 'list' {
+    $span-value: get-match-value-of-keys($rows, span);
+    $start-value: get-match-value-of-keys($rows, start s);
+    $end-value: get-match-value-of-keys($rows, end e);
+    @if $span-value {
+      @include grid-row(span, $span-value);
+    } @else if $start-value {
+      @include grid-row(start, $start-value);
+    } @else if $end-value {
+      @include grid-row(end, $end-value);
+    } @else {
+      @include grid-row(se, $rows);
+    }
+  }
+  @if $rows-type == 'number' or $rows-type == 'string' and str-index($rows, '/')
+  {
+    @include grid-row($rows);
+  }
+
+  @if $cols-type == 'list' {
+    $span-value: get-match-value-of-keys($cols, span);
+    $start-value: get-match-value-of-keys($cols, start s);
+    $end-value: get-match-value-of-keys($cols, end e);
+    @if $span-value {
+      @include grid-col(span, $span-value);
+    } @else if $start-value {
+      @include grid-col(start, $start-value);
+    } @else if $end-value {
+      @include grid-col(end, $end-value);
+    } @else {
+      @include grid-col(se, $cols);
+    }
+  }
+  @if $cols-type == 'number' or $cols-type == 'string' and str-index($cols, '/')
+  {
+    @include grid-col($cols);
+  }
+
+  // 그리드 영역(grid-area)을 문자 값으로 전달한 경우
+  @if $rows-type == 'string' and not str-index($rows, '/') {
+    grid-area: $rows;
+  }
+}

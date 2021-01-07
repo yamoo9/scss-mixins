@@ -1,0 +1,166 @@
+// justify-*
+// justify-items-*
+// justify-self-*
+// content-*
+// items-*
+// self-*
+
+@mixin grid-container-append(
+  $rows: null,
+  $cols: null,
+  $gap: null,
+  $auto: null,
+  $align: null,
+  $areas: null
+) {
+  // ——————————————————————————————————————————————————————————————————————————————————
+  // grid-template-rows
+  @if $rows != null {
+    @include grid-rows($rows);
+  }
+
+  // ——————————————————————————————————————————————————————————————————————————————————
+  // grid-template-cols
+  @if $cols != null {
+    @include grid-cols($cols);
+  }
+
+  // ——————————————————————————————————————————————————————————————————————————————————
+  // grid-template-areas
+  @if $areas != null {
+    @include grid-areas($areas);
+  }
+
+  // ——————————————————————————————————————————————————————————————————————————————————
+  // gap
+  @if $gap != null {
+    @include gap($gap);
+  }
+
+  // ——————————————————————————————————————————————————————————————————————————————————
+  // grid-auto-*
+  @if $auto != null {
+    @include grid-auto($auto);
+  }
+
+  // ——————————————————————————————————————————————————————————————————————————————————
+  // box alignment
+
+  @if $align != null {
+    // justify-content
+    $justify-content-values: (
+      justify-start,
+      justify-center,
+      justify-end,
+      justify-left,
+      justify-right,
+      justify-normal,
+      justify-between,
+      justify-around,
+      justify-evenly,
+      justify-stretch,
+      justify-safe,
+      justify-unsafe,
+      justify-inherit,
+      justify-initial,
+      justify-unset
+    );
+
+    @if is-include-items($align, $justify-content-values) {
+      @each $value in $align {
+        @if str-index($value, 'justify-') and not
+          str-index($value, 'justify-items-') and not
+          str-index($value, 'justify-self-')
+        {
+          @include justify-content(str-replace($value, 'justify-'));
+        }
+      }
+    }
+
+    // justify-items
+    $justify-items-values: (
+      justify-items-auto,
+      justify-items-normal,
+      justify-items-stretch,
+      justify-items-start,
+      justify-items-center,
+      justify-items-end,
+      justify-items-left,
+      justify-items-right,
+      justify-items-normal,
+      justify-items-baseline,
+      justify-items-first-baseline,
+      justify-items-last-baseline,
+      justify-items-safe,
+      justify-items-unsafe,
+      justify-items-inherit,
+      justify-items-initial,
+      justify-items-unset
+    );
+
+    @if is-include-items($align, $justify-items-values) {
+      @each $value in $align {
+        @if str-index($value, 'justify-items-') {
+          @include justify-items(str-replace($value, 'justify-items-'));
+        }
+      }
+    }
+
+    // align-content
+    $align-content-values: (
+      content-start,
+      content-center,
+      content-end,
+      content-left,
+      content-right,
+      content-normal,
+      content-baseline,
+      content-first-baseline,
+      content-last-baseline,
+      content-between,
+      content-around,
+      content-evenly,
+      content-stretch,
+      content-safe,
+      content-unsafe,
+      content-inherit,
+      content-initial,
+      content-unset
+    );
+
+    @if is-include-items($align, $align-content-values) {
+      @each $value in $align {
+        @if str-index($value, 'content-') {
+          @include align-content(str-replace($value, 'content-'));
+        }
+      }
+    }
+
+    // align-items
+    $align-items-values: (
+      items-normal,
+      items-stretch,
+      items-start,
+      items-center,
+      items-end,
+      items-baseline,
+      items-first-baseline,
+      items-last-baseline,
+      items-safe,
+      items-unsafe,
+      items-inherit,
+      items-initial,
+      items-unset
+    );
+
+    @if is-include-items($align, $align-items-values) {
+      @each $value in $align {
+        @if str-index($value, 'items-') and not
+          str-index($value, 'justify-items-')
+        {
+          @include align-items(str-replace($value, 'items-'));
+        }
+      }
+    }
+  }
+}

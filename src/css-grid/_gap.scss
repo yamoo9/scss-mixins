@@ -1,12 +1,15 @@
 // @include gap(20px 40px);
 // 참고: https://tailwindcss.com/docs/gap
 
-@mixin gap($grid-gap: null null) {
-  @if length($grid-gap) == 1 {
-    gap: $grid-gap;
+@mixin gap($value: null) {
+  @if $value == null {
+    @error 'gap() 믹스인은 숫자 값을 1 또는 2개의 값을 전달 받아야 합니다.';
   }
-  @if length($grid-gap) == 2 {
-    row-gap: nth($grid-gap, 1);
-    column-gap: nth($grid-gap, 2);
+  @if length($value) == 1 {
+    gap: unitless-px($value);
+  }
+  @if length($value) == 2 {
+    row-gap: unitless-px(nth($value, 1));
+    column-gap: unitless-px(nth($value, 2));
   }
 }

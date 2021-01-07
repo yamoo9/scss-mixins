@@ -1,0 +1,92 @@
+// @include grid-item('header');
+// @include grid-item(2 10);
+// @include grid-item((2 4, 1 -1));
+// @include grid-item(('2 / 4', '1 / -1'));
+// @include grid-item((span 2, end 4);
+// @include grid-item(2 3, justify-self-center self-center);
+
+@mixin grid-item($area: null, $align: null) {
+  // ——————————————————————————————————————————————————————————————————————————————————
+  // grid-row,column,area
+
+  @if $area != null {
+    $type: type-of($area);
+
+    // grid-area
+    @if $type == 'string' {
+      @include grid-area($area);
+    }
+
+    // grid-row
+    // grid-column
+    @if $type == 'list' {
+      $row-value: first($area);
+      $col-value: last($area);
+      @include grid-area($row-value, $col-value);
+    }
+  }
+
+  // ——————————————————————————————————————————————————————————————————————————————————
+  // box alignment
+
+  @if $align != null {
+    // justify-self
+    $justify-self-values: (
+      justify-self-auto,
+      justify-self-normal,
+      justify-self-stretch,
+      justify-self-start,
+      justify-self-center,
+      justify-self-end,
+      justify-self-left,
+      justify-self-right,
+      justify-self-baseline,
+      justify-self-first-baseline,
+      justify-self-last-baseline,
+      justify-self-safe,
+      justify-self-unsafe,
+      justify-self-inherit,
+      justify-self-initial,
+      justify-self-unset
+    );
+
+    @if is-include-items($align, $justify-self-values) {
+      @each $value in $align {
+        @if str-index($value, 'justify-self-') {
+          @include justify-self(str-replace($value, 'justify-self-'));
+        }
+      }
+    }
+
+    // align-self
+    $align-self-values: (
+      self-normal,
+      self-stretch,
+      self-start,
+      self-center,
+      self-end,
+      self-baseline,
+      self-first-baseline,
+      self-last-baseline,
+      self-safe,
+      self-unsafe,
+      self-inherit,
+      self-initial,
+      self-unset
+    );
+
+    @if is-include-items($align, $align-self-values) {
+      @each $value in $align {
+        @if str-index($value, 'self-') and not
+          str-index($value, 'justify-self-')
+        {
+          @include align-self(str-replace($value, 'self-'));
+        }
+      }
+    }
+  }
+}
+
+@mixin grid-i($area: null, $align: null) {
+  @include grid-item($area, $align);
+}

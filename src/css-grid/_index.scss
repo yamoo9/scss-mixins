@@ -1,8 +1,14 @@
-@import './grid';
+// Grid Container
+@import './grid-container';
+@import './grid-container-append';
 @import './grid-rows';
 @import './grid-cols';
+@import './grid-areas';
 @import './gap';
-@import './col';
-@import './row';
-@import './area';
 @import './grid-auto';
+
+// Grid Item
+@import './grid-item';
+@import './grid-area';
+@import './grid-row';
+@import './grid-col';

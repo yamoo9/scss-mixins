@@ -1,0 +1,20 @@
+// @include grid-areas('header x3' '. main .' 'footer x3');
+
+@mixin grid-areas($areas: null) {
+  $areas-list: ();
+
+  @each $area in $areas {
+    $compiled-text: str-extract-count-keyword($area);
+
+    @if type-of($compiled-text) == 'map' {
+      $compiled-text: str-repeat(
+        map-get($compiled-text, count),
+        map-get($compiled-text, keyword)
+      );
+    }
+
+    $areas-list: append($areas-list, $compiled-text);
+  }
+
+  grid-template-areas: $areas-list;
+}
