@@ -1,3 +1,5 @@
+@use 'sass:list';
+
 @function first($list) {
   @return nth($list, 1);
 }
@@ -6,7 +8,40 @@
   @return nth($list, length($list));
 }
 
+@function copy-list($list) {
+  $copyed-list: ();
+
+  @each $item in $list {
+    $copyed-list: append($copyed-list, $item);
+  }
+
+  @return $copyed-list;
+}
+
+@function merge-list($list1: (), $list2: ()) {
+  $merge-list: copy-list($list1);
+
+  @if length($list2) > 1 {
+    @for $i from 1 through length($list2) {
+      $merge-list: list.set-nth($merge-list, $i, nth($list2, $i));
+    }
+  }
+
+  @return $merge-list;
+}
+
 @function get-value-after-key($key-value-list, $key) {
   $key-index: index($key-value-list, $key);
   @return if($key-index, nth($key-value-list, $key-index + 1), null);
+}
+
+// 키(key) 집합(list)을 순환하여 일치하는 값을 최종 계산하여 반환
+// 예: get-match-value-of-keys(b 30px, bottom b);
+@function get-match-value-of-keys($values, $keys) {
+  $value: null;
+
+  @each $key in $keys {
+    $value: if($value, $value, get-value-after-key($values, $key));
+  }
+  @return $value;
 }
