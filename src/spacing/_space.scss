@@ -1,0 +1,40 @@
+@mixin space($x: (), $y: ()) {
+  $x: merge-list(null normal, $x);
+  $y: merge-list(null normal, $y);
+
+  & > :not([hidden]) ~ :not([hidden]) {
+    $x-value: first($x);
+    $x-reverse: last($x);
+    @if $x-value != null {
+      // 반전 설정 유무에 따라 값을 1 또는 0으로 변경
+      $space-x-reverse: if($x-reverse != normal, 0, 1);
+      $left-value: $x-value * (1 - $space-x-reverse);
+      $right-vlaue: $x-value * $space-x-reverse;
+
+      @include m(l $left-value r $right-vlaue);
+    }
+
+    $y-value: first($y);
+    $y-reverse: last($y);
+    @if $y-value != null {
+      // 반전 설정 유무에 따라 값을 1 또는 0으로 변경
+      $space-y-reverse: if($y-reverse != normal, 0, 1);
+      $top-value: $y-value * (1 - $space-y-reverse);
+      $bottom-vlaue: $y-value * $space-y-reverse;
+
+      @include m(t $top-value b $bottom-vlaue);
+    }
+  }
+}
+
+@mixin s($x: (), $y: ()) {
+  @include space($x, $y);
+}
+
+@mixin sx($value: ()) {
+  @include space($value);
+}
+
+@mixin sy($value: ()) {
+  @include space($y: $value);
+}
