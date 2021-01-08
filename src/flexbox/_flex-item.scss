@@ -24,7 +24,7 @@
       $self-value-index: index($args, $keyword);
       @if $self-value-index {
         $self-value: nth($args, $self-value-index);
-        @include align-self($self-value, flex);
+        @include align-self(str-replace($self-value, 'self-'), flex);
       }
     }
 

@@ -65,14 +65,3 @@ $base-rem-size: 16px !default;
 @function get-number-or-string($value) {
   @return if(type-of($value) == 'number', unitless-px($value), $value);
 }
-
-// 키(key) 집합(list)을 순환하여 일치하는 값을 최종 계산하여 반환
-// 예: get-match-value-of-keys(b 30px, bottom b);
-@function get-match-value-of-keys($values, $keys) {
-  $value: null;
-
-  @each $key in $keys {
-    $value: if($value, $value, get-value-after-key($values, $key));
-  }
-  @return $value;
-}

@@ -41,7 +41,7 @@
       $justifyContent-index: index($args, $justifyContent);
 
       @if $justifyContent-index {
-        $justifyContent-value: str-repace(
+        $justifyContent-value: str-replace(
           nth($args, $justifyContent-index),
           'justify-'
         );
