@@ -1,14 +1,14 @@
 // @include col-span(3);
 // 참고: https://tailwindcss.com/docs/grid-column
 
-@mixin col-span($n: null) {
-  @if type-of($n) != 'number' and $n != 'full' {
+@mixin col-span($value: null) {
+  @if type-of($value) != 'number' and $value != 'full' {
     @error 'col-span() 믹스인은 숫자 또는 full 문자 값만 전달 받을 수 있습니다.';
   }
-  @if $n == 'full' {
+  @if $value == 'full' {
     grid-column: unquote('1 / -1');
   } @else {
-    grid-column: unquote('span #{$n} / span #{$n}');
+    grid-column: unquote('span #{$value} / span #{$value}');
   }
 }
 
