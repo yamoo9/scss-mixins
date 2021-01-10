@@ -1,8 +1,14 @@
 # 이듬(E.UID) — SCSS Mixins
 
-<img src="https://img.shields.io/badge/%40euid-SCSS--Mixins-red?style=flat-square&labelColor=0A0A23&color=E6526F" alt="" /> <img src="https://img.shields.io/npm/v/@euid/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt="" /> <img src="https://img.shields.io/npm/l/@euid/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt="" /> <img src="https://img.shields.io/npm/dt/@euid/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/languages/code-size/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /><br/><img src="https://img.shields.io/david/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/issues-pr/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/issues/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/issues-closed/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/stars/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/watchers/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt />
+<img src="https://img.shields.io/badge/%40euid-SCSS--Mixins-red?style=flat-square&labelColor=0A0A23&color=E6526F" alt="" /> <img src="https://img.shields.io/npm/v/@euid/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt="" /> <img src="https://img.shields.io/npm/l/@euid/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt="" /> <img src="https://img.shields.io/npm/dt/@euid/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/languages/code-size/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /><br/>
+
+<!-- 
+<img src="https://img.shields.io/david/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/issues-pr/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/issues/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/issues-closed/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/stars/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt /> <img src="https://img.shields.io/github/watchers/yamoo9/scss-mixins.svg?style=flat-square&labelColor=0A0A23&color=E6526F" alt />
+-->
 
 SCSS 믹스인 라이브러리 → [이듬(E.UID)](https://euid.dev) 블렌디드 러닝 학습용
+
+<img src="https://raw.githubusercontent.com/yamoo9/scss-mixins-snippets/master/assets/demonstration.gif" alt="" width="100%" />
 
 <br/>
 
@@ -65,6 +71,17 @@ $ sass --load-path=node_modules src/sass:dist/css
 [@euid/scss-mixins 문서](https://yamoo9.gitbook.io/scss-mixins)를 통해 사용법을 확인하고 익힐 수 있습니다.
 
 ![](assets/scss-mixins-documentation.png)
+
+<br/>
+
+## VS Code 확장(Extension)
+
+[@euid/scss-mixins 스니펫(Snippets)](https://marketplace.visualstudio.com/items?itemName=yamoo9.euid-scss-mixins-snippets) 확장을 설치하면 믹스인 라이브러리 코드 호출이 손쉽습니다.
+### 확장 설치
+
+보기(View) → 확장(Extensions)을 선택, `euid` 키워드를 검색해 VS Code 마켓 플레이스에 배포된 확장을 설치합니다.
+
+<img src="https://iili.io/KLwQbp.gif" alt="" width="640"/>
 
 <br/>
 
