@@ -1,10 +1,11 @@
 @mixin space($x: (), $y: ()) {
-  $x: merge-list(null normal, $x);
-  $y: merge-list(null normal, $y);
+  $x: merge-list(null normal, if(length($x) > 1, $x, $x normal));
+  $y: merge-list(null normal, if(length($y) > 1, $y, $y normal));
 
   & > :not([hidden]) ~ :not([hidden]) {
     $x-value: first($x);
     $x-reverse: last($x);
+
     @if $x-value != null {
       // 반전 설정 유무에 따라 값을 1 또는 0으로 변경
       $space-x-reverse: if($x-reverse != normal, 0, 1);
@@ -16,6 +17,12 @@
 
     $y-value: first($y);
     $y-reverse: last($y);
+
+    @if length($y-value) == 0 {
+      $y-value: $x-value;
+      $y-reverse: $x-reverse;
+    }
+
     @if $y-value != null {
       // 반전 설정 유무에 따라 값을 1 또는 0으로 변경
       $space-y-reverse: if($y-reverse != normal, 0, 1);
@@ -32,9 +39,9 @@
 }
 
 @mixin sx($value: ()) {
-  @include space($value);
+  @include space($value, null);
 }
 
 @mixin sy($value: ()) {
-  @include space($y: $value);
+  @include space(null, $value);
 }
