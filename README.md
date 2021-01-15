@@ -88,8 +88,7 @@ $ sass --load-path=node_modules src/sass:dist/css
 
 ## 릴리즈 노트
 
-
-### 0.1.2 (2021-01-15)
+### 0.2.0 (2021-01-15)
 
 [개선]
 - 리스트 모듈 함수 → 글로벌 리스트 함수로 변경
@@ -98,8 +97,7 @@ $ sass --load-path=node_modules src/sass:dist/css
 [추가]
 - VS Code 확장 [@euid/scss-mixins-snippets](https://marketplace.visualstudio.com/items?itemName=yamoo9.euid-scss-mixins-snippets) 설치 정보 → README 추가
 
-
-### 0.2.0 (2021-01-09)
+### 0.1.2 (2021-01-09)
 
 [개선]
 - 플렉스박스 믹스인 버그 해결 → flex-container-append() : str-replace() 함수 호출(오타)
@@ -110,7 +108,6 @@ $ sass --load-path=node_modules src/sass:dist/css
 - 리스트 유틸리티 함수 추가
   - copy-list()
   - merge-list()
-
 
 ### 0.1.0 (2021-01-07)
 
