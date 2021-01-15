@@ -23,7 +23,7 @@
 
   @if length($list2) > 1 {
     @for $i from 1 through length($list2) {
-      $merge-list: list.set-nth($merge-list, $i, nth($list2, $i));
+      $merge-list: set-nth($merge-list, $i, nth($list2, $i));
     }
   }
 
